@@ -18,7 +18,7 @@ normalized back to canonical taxonomy keys.
 | `cors_server.py` | Serve `snapshots/` on `127.0.0.1:8765` with CORS for the annotation UI |
 | `start.sh` / `start.bat` | Start the stack: CORS server + Label Studio |
 | `normalize_export.py` | Map exported choice values back to canonical keys |
-| `tasks.example.jsonl` | One snapshot-mode + one text-mode example task |
+| `tasks.example.snapshot.jsonl` / `tasks.example.text.jsonl` | Example task file per mode (snapshot and text; one mode per file — never mix) |
 | `snapshots/EXAMPLE.html` | Example served article snapshot |
 | `tools/` | Snapshot pipeline: raw article HTML → sanitized, self-contained snapshots (see [docs/SNAPSHOT_PIPELINE.md](docs/SNAPSHOT_PIPELINE.md)) |
 | `tests/` | Pytest suite for build/import-validation/normalize |
@@ -72,8 +72,11 @@ existing project; it never duplicates projects.
 
 Create `tasks.jsonl` — one flat JSON object per line, either snapshot mode
 (`title` + `url` + `snapshot_url`) or text mode (`title` + `url` + `text`).
-Exact schemas and rules: [docs/DATA.md](docs/DATA.md). A ready-made example is
-in `tasks.example.jsonl`; snapshot-mode files must exist under `snapshots/`
+Exact schemas and rules: [docs/DATA.md](docs/DATA.md). Ready-made examples:
+`tasks.example.snapshot.jsonl` (snapshot mode) and
+`tasks.example.text.jsonl` (text mode) — a file must contain ONE mode only,
+because the labeling config is built for a single mode; `import_tasks.py`
+rejects mixed files. Snapshot-mode files must exist under `snapshots/`
 and be referenced as `http://127.0.0.1:8765/<file>.html` (see
 [docs/SNAPSHOT_PIPELINE.md](docs/SNAPSHOT_PIPELINE.md) for producing them from
 raw article HTML).

@@ -56,6 +56,14 @@ def validate_task(obj: dict) -> list[str]:
 
     return errors
 
+def task_mode(obj: dict) -> str:
+    """Return "snapshot" or "text" for a valid task, "" if neither/invalid."""
+    if "snapshot_url" in obj and "text" not in obj:
+        return "snapshot"
+    if "text" in obj and "snapshot_url" not in obj:
+        return "text"
+    return ""
+
 
 def _bootstrap_django() -> None:
     import label_studio  # type: ignore[import-not-found]
@@ -72,6 +80,43 @@ def _bootstrap_django() -> None:
     django.setup()
 
 
+def read_tasks(path: str) -> list[dict]:
+    """Parse and validate a JSONL file; reject files mixing both modes.
+
+    The labeling config is built for one mode (build.py --text vs. default),
+    so a file containing both snapshot-mode and text-mode tasks is rejected
+    as a whole — importing it would create tasks that cannot display.
+    """
+    tasks: list[dict] = []
+    modes: dict[str, int] = {}
+    with open(path, encoding="utf-8") as f:
+        for lineno, line in enumerate(f, start=1):
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                obj = json.loads(line)
+            except json.JSONDecodeError as e:
+                print(f"line {lineno}: invalid JSON ({e}) - skipped")
+                continue
+            errors = validate_task(obj)
+            if errors:
+                print(f"line {lineno}: {'; '.join(errors)} - skipped")
+                continue
+            mode = task_mode(obj)
+            modes[mode] = modes.get(mode, 0) + 1
+            tasks.append(obj)
+
+    if len(modes) > 1:
+        summary = ", ".join(f"{m} x{n}" for m, n in sorted(modes.items()))
+        raise SystemExit(
+            f"mixed modes in one file ({summary}): the labeling config is "
+            "built for a single mode, so snapshot-mode and text-mode tasks "
+            "must be imported from separate files (and separate projects)"
+        )
+    return tasks
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--file", required=True, help="path to tasks.jsonl")
@@ -79,6 +124,8 @@ def main() -> None:
     parser.add_argument("--force", action="store_true",
                         help="append even if the project already has tasks")
     args = parser.parse_args()
+
+    tasks = read_tasks(args.file)
 
     _bootstrap_django()
 
@@ -97,28 +144,10 @@ def main() -> None:
         print(f"project already has {existing} tasks - import skipped")
         return
 
-    tasks: list[dict] = []
-    with open(args.file, encoding="utf-8") as f:
-        for lineno, line in enumerate(f, start=1):
-            line = line.strip()
-            if not line:
-                continue
-            try:
-                obj = json.loads(line)
-            except json.JSONDecodeError as e:
-                print(f"line {lineno}: invalid JSON ({e}) - skipped")
-                continue
-            errors = validate_task(obj)
-            if errors:
-                print(f"line {lineno}: {'; '.join(errors)} - skipped")
-                continue
-            tasks.append(obj)
-
     Task.objects.bulk_create(Task(project=project, data=obj) for obj in tasks)
     print(
         f"imported {len(tasks)} tasks; total now: {project.tasks.count()}"
     )
-
 
 if __name__ == "__main__":
     main()

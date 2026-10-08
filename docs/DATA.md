@@ -62,7 +62,9 @@ stored as extra task data in Label Studio. The pipeline tools use
 
 Do not mix modes in one file: the labeling config is built for one mode
 (`build.py --text` vs. default), and tasks of the other mode will not
-display. Both modes are demonstrated in `tasks.example.jsonl`.
+display — `import_tasks.py` rejects files containing both modes. Each mode
+has its own example file: `tasks.example.snapshot.jsonl` and
+`tasks.example.text.jsonl`.
 
 ## Label Studio annotation export
 
