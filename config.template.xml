@@ -1,0 +1,295 @@
+<View>
+  <Style>
+    .ls-wrap { display:flex; gap:20px; align-items:flex-start; }
+    .ls-article { flex:0 0 58%; min-width:420px; position:sticky; top:8px; background:#fff; border:1px solid #e3e6ea; border-radius:10px; padding:14px 16px; box-shadow:0 1px 3px rgba(0,0,0,.06); }
+    .ls-article-title { font-size:18px; font-weight:600; line-height:1.35; margin:4px 0 8px; }
+    .ls-url { font-size:12px; color:#6b7280; word-break:break-all; margin-top:6px; }
+    .ls-form { flex:1 1 42%; min-width:340px; }
+    .ls-intro { background:#eef4ff; border:1px solid #c7d7fe; border-radius:10px; padding:10px 14px; margin-bottom:14px; font-size:13px; color:#1e3a8a; }
+    .ls-step { background:#fff; border:1px solid #e3e6ea; border-left:5px solid #2563eb; border-radius:10px; padding:12px 16px 6px; margin-bottom:14px; box-shadow:0 1px 3px rgba(0,0,0,.05); }
+    .ls-step-2 { border-left-color:#dc2626; }
+    .ls-step-3 { border-left-color:#d97706; }
+    .ls-step-4 { border-left-color:#7c3aed; }
+    .ls-q { margin:10px 0 2px; font-weight:600; font-size:15px; }
+    .ls-help { font-size:12.5px; color:#4b5563; margin:0 0 6px; line-height:1.4; }
+    .ls-note { background:#fff8e1; border:1px solid #f5d77a; border-radius:6px; padding:6px 10px; font-size:12.5px; color:#7a5a00; margin:4px 0 8px; }
+    .ls-done { background:#ecfdf5; border:1px solid #a7f3d0; border-radius:8px; padding:10px 14px; font-size:13.5px; color:#065f46; margin-bottom:14px; }
+    .ls-sub { background:#f9fafb; border:1px dashed #d1d5db; border-radius:8px; padding:8px 12px; margin:8px 0 10px; }
+  </Style>
+
+  <View className="ls-wrap">
+    <!-- ĽAVÝ PANEL: článok -->
+    <View className="ls-article">
+      <Header value="{{title_clanok}}" size="5" style="color:#6b7280; margin:0"/>
+      <View className="ls-article-title">
+        <Text name="title" value="$title" editable="false"/>
+      </View>
+      {{#SNAPSHOT}}
+      <HyperText name="web" value="$snapshot_url" valueType="url" height="720"/>
+      {{/SNAPSHOT}}
+      {{#TEXT}}
+      <Text name="text" value="$text"/>
+      {{/TEXT}}
+      <View className="ls-url">
+        <Text name="url" value="$url" editable="false"/>
+      </View>
+    </View>
+
+    <!-- PRAVÝ PANEL: formulár -->
+    <View className="ls-form">
+      <View className="ls-intro">
+        <Text name="intro_text" value="{{intro_text}}"/>
+      </View>
+
+      <!-- KROK I -->
+      <View className="ls-step">
+        <Header value="{{title_celkove_hodnotenie}}" size="4"/>
+
+        <Header value="{{q_1_1}}" className="ls-q" size="5"/>
+        <View className="ls-help">
+          <Text name="h_autor" value="{{help_autor}}"/>
+        </View>
+        <Choices name="autor" toName="{{target}}" required="true" requiredMessage="{{q_1_1_required}}" showInline="false" choice="single">
+          <Choice value="{{choice_autor_anonymny}}" hint="{{hint_autor_anonymny}}"/>
+          <Choice value="{{choice_autor_neznamy}}" hint="{{hint_autor_neznamy}}"/>
+          <Choice value="{{choice_autor_znamy}}" hint="{{hint_autor_znamy}}"/>
+        </Choices>
+
+        <View visibleWhen="choice-selected" whenTagName="autor" whenChoiceValue="{{choice_autor_neznamy}}">
+          <TextArea name="autor_meno_neznamy" toName="{{target}}" showSubmitButton="false" rows="1" placeholder="{{ph_autor_meno_neznamy}}" required="false"/>
+        </View>
+        <View visibleWhen="choice-selected" whenTagName="autor" whenChoiceValue="{{choice_autor_znamy}}">
+          <TextArea name="autor_meno_znamy" toName="{{target}}" showSubmitButton="false" rows="1" placeholder="{{ph_autor_meno_znamy}}" required="false"/>
+        </View>
+
+        <Header value="{{q_1_2}}" className="ls-q" size="5"/>
+        <View className="ls-note">
+          <Text name="n_obsah" value="{{note_obsah}}"/>
+        </View>
+        <Choices name="obsah" toName="{{target}}" required="true" requiredMessage="{{q_1_2_required}}" showInline="false" choice="single-radio">
+          <Choice value="{{choice_obsah_doverihodna}}" hint="{{hint_obsah_doverihodna}}"/>
+          <Choice value="{{choice_obsah_dez}}" hint="{{hint_obsah_dez}}"/>
+          <Choice value="{{choice_obsah_tazko}}" hint="{{hint_obsah_tazko}}"/>
+          <Choice value="{{choice_obsah_nezdochne}}" hint="{{hint_obsah_nezdochne}}"/>
+        </Choices>
+      </View>
+
+      <View visibleWhen="choice-selected" whenTagName="obsah" whenChoiceValue="{{choice_obsah_doverihodna}}">
+        <View className="ls-done"><Text name="done_1" value="{{done_kompletne}}"/></View>
+      </View>
+      <View visibleWhen="choice-selected" whenTagName="obsah" whenChoiceValue="{{choice_obsah_tazko}}">
+        <View className="ls-done"><Text name="done_2" value="{{done_kompletne}}"/></View>
+      </View>
+      <View visibleWhen="choice-selected" whenTagName="obsah" whenChoiceValue="{{choice_obsah_nezdochne}}">
+        <View className="ls-done"><Text name="done_3" value="{{done_kompletne}}"/></View>
+      </View>
+
+      {{#FULL}}
+      <View visibleWhen="choice-selected" whenTagName="obsah" whenChoiceValue="{{choice_obsah_dez}}">
+        <View className="ls-step ls-step-2">
+          <Header value="{{title_krok_2}}" size="4"/>
+
+          <Header value="{{q_2_1}}" className="ls-q" size="5"/>
+          <View className="ls-help"><Text name="h_typ" value="{{help_multi}}"/></View>
+          <View className="ls-note">
+            <Text name="n_typ" value="{{note_typ}}"/>
+          </View>
+          <Choices name="typ_dezinformacie" toName="{{target}}" required="true" requiredMessage="{{q_2_1_required}}" showInline="false" choice="multiple">
+            <Choice value="{{choice_typ_nepravdost}}" hint="{{hint_typ_nepravdost}}"/>
+            <Choice value="{{choice_typ_manipulacia}}" hint="{{hint_typ_manipulacia}}"/>
+            <Choice value="{{choice_typ_trolling}}" hint="{{hint_typ_trolling}}"/>
+            <Choice value="{{choice_typ_konspiracia}}" hint="{{hint_typ_konspiracia}}"/>
+          </Choices>
+
+          <View visibleWhen="choice-selected" whenTagName="typ_dezinformacie" whenChoiceValue="{{choice_typ_nepravdost}}">
+            <View className="ls-sub">
+              <Header value="{{title_fakt_checking}}" size="5"/>
+              <View className="ls-help">
+                <Text name="h_fc" value="{{help_fakt_checking}}"/>
+              </View>
+              <TextArea name="neprave_tvrdenie" toName="{{target}}" showSubmitButton="false" rows="3" placeholder="{{ph_neprave_tvrdenie}}" required="false"/>
+              <TextArea name="vyvracajuci_zdroj" toName="{{target}}" showSubmitButton="false" rows="2" placeholder="{{ph_vyvracajuci_zdroj}}" required="false"/>
+            </View>
+          </View>
+
+          <View visibleWhen="choice-selected" whenTagName="typ_dezinformacie" whenChoiceValue="{{choice_typ_manipulacia}}">
+            <View className="ls-sub">
+              <Header value="{{title_manipulativne_techniky}}" size="5"/>
+              <View className="ls-help">
+                <Text name="h_manip" value="{{help_manipulacne_techniky}}"/>
+              </View>
+              <Choices name="manipulacne_techniky" toName="{{target}}" required="true" requiredMessage="{{q_manipulacne_techniky_required}}" showInline="false" choice="multiple">
+                <Choice value="{{choice_mt_cherry_picking}}" hint="{{hint_mt_cherry_picking}}"/>
+                <Choice value="{{choice_mt_quote_mining}}" hint="{{hint_mt_quote_mining}}"/>
+                <Choice value="{{choice_mt_anegdota}}" hint="{{hint_mt_anegdota}}"/>
+                <Choice value="{{choice_mt_whataboutism}}" hint="{{hint_mt_whataboutism}}"/>
+                <Choice value="{{choice_mt_strawman}}" hint="{{hint_mt_strawman}}"/>
+                <Choice value="{{choice_mt_sugestivne_otazky}}" hint="{{hint_mt_sugestivne_otazky}}"/>
+                <Choice value="{{choice_mt_apel_na_emocie}}" hint="{{hint_mt_apel_na_emocie}}"/>
+                <Choice value="{{choice_mt_falosna_pricina}}" hint="{{hint_mt_falosna_pricina}}"/>
+                <Choice value="{{choice_mt_zvelicovanie}}" hint="{{hint_mt_zvelicovanie}}"/>
+                <Choice value="{{choice_mt_chybna_referencia}}" hint="{{hint_mt_chybna_referencia}}"/>
+              </Choices>
+            </View>
+          </View>
+        </View>
+
+        <View className="ls-step ls-step-3">
+          <Header value="{{title_krok_3}}" size="4"/>
+
+          <Header value="{{q_3_1}}" className="ls-q" size="5"/>
+          <View className="ls-help"><Text name="h_mot" value="{{help_multi}}"/></View>
+          <View className="ls-note">
+            <Text name="n_mot" value="{{note_mot}}"/>
+          </View>
+          <Choices name="motivacia" toName="{{target}}" required="true" requiredMessage="{{q_3_1_required}}" showInline="false" choice="multiple">
+            <Choice value="{{choice_mot_vnutropoliticka}}" hint="{{hint_mot_vnutropoliticka}}"/>
+            <Choice value="{{choice_mot_zahranicnopoliticka}}" hint="{{hint_mot_zahranicnopoliticka}}"/>
+            <Choice value="{{choice_mot_ekonomicka}}" hint="{{hint_mot_ekonomicka}}"/>
+            <Choice value="{{choice_mot_popularita}}" hint="{{hint_mot_popularita}}"/>
+            <Choice value="{{choice_mot_socialna}}" hint="{{hint_mot_socialna}}"/>
+            <Choice value="{{choice_mot_komplex_vyvoleneho}}" hint="{{hint_mot_komplex_vyvoleneho}}"/>
+          </Choices>
+
+          <Header value="{{q_3_2}}" className="ls-q" size="5"/>
+          <View className="ls-help"><Text name="h_zamer" value="{{help_multi}}"/></View>
+          <Choices name="zamer" toName="{{target}}" required="true" requiredMessage="{{q_3_2_required}}" showInline="false" choice="multiple">
+            <Choice value="{{choice_zamer_podkopavanie_institucii}}" hint="{{hint_zamer_podkopavanie_institucii}}"/>
+            <Choice value="{{choice_zamer_zmena_politickych_nazorov}}" hint="{{hint_zamer_zmena_politickych_nazorov}}"/>
+            <Choice value="{{choice_zamer_podkopavanie_aliancii}}" hint="{{hint_zamer_podkopavanie_aliancii}}"/>
+            <Choice value="{{choice_zamer_stereotypy}}" hint="{{hint_zamer_stereotypy}}"/>
+            <Choice value="{{choice_zamer_antivedecke}}" hint="{{hint_zamer_antivedecke}}"/>
+          </Choices>
+
+          <Header value="{{q_3_3}}" className="ls-q" size="5"/>
+          <View className="ls-help">
+            <Text name="h_emo" value="{{help_emocie}}"/>
+          </View>
+          <Choices name="emocie" toName="{{target}}" required="true" requiredMessage="{{q_3_3_required}}" showInline="true" choice="multiple">
+            <Choice value="{{choice_emo_strach}}"/>
+            <Choice value="{{choice_emo_hnev}}"/>
+            <Choice value="{{choice_emo_odpor}}"/>
+            <Choice value="{{choice_emo_neistota}}"/>
+            <Choice value="{{choice_emo_nadej}}"/>
+            <Choice value="{{choice_emo_hrdost}}"/>
+            <Choice value="{{choice_emo_pohrdanie}}"/>
+            <Choice value="{{choice_emo_lahostajnost}}"/>
+          </Choices>
+
+          <Header value="{{q_3_4}}" className="ls-q" size="5"/>
+          <View className="ls-note">
+            <Text name="n_tema" value="{{note_tema}}"/>
+          </View>
+          <Choices name="tema" toName="{{target}}" required="true" requiredMessage="{{q_3_4_required}}" showInline="false" choice="single">
+            <Choice value="{{choice_tema_vojna}}"/>
+            <Choice value="{{choice_tema_migracia}}"/>
+            <Choice value="{{choice_tema_zdravie}}"/>
+            <Choice value="{{choice_tema_klima}}"/>
+            <Choice value="{{choice_tema_eunato}}"/>
+            <Choice value="{{choice_tema_institucie}}"/>
+            <Choice value="{{choice_tema_rod}}"/>
+            <Choice value="{{choice_tema_lgbt}}"/>
+          </Choices>
+        </View>
+
+        <View className="ls-step ls-step-4">
+          <Header value="{{title_krok_4}}" size="4"/>
+          <View className="ls-help">
+            <Text name="h_nar" value="{{help_narativy}}"/>
+          </View>
+
+          <View visibleWhen="choice-selected" whenTagName="tema" whenChoiceValue="{{choice_tema_vojna}}">
+            <Choices name="narativy_vojna" toName="{{target}}" required="true" requiredMessage="{{q_narativy_required}}" showInline="false" choice="multiple">
+              <Choice value="{{choice_nar_vojna_nebezpecenstvo}}"/>
+              <Choice value="{{choice_nar_vojna_zla_krajina}}"/>
+              <Choice value="{{choice_nar_vojna_zapad_nemoralni}}"/>
+              <Choice value="{{choice_nar_vojna_inscenovana}}"/>
+              <Choice value="{{choice_nar_vojna_rusko_silne}}"/>
+            </Choices>
+          </View>
+
+          <View visibleWhen="choice-selected" whenTagName="tema" whenChoiceValue="{{choice_tema_migracia}}">
+            <Choices name="narativy_migracia" toName="{{target}}" required="true" requiredMessage="{{q_narativy_required}}" showInline="false" choice="multiple">
+              <Choice value="{{choice_nar_migracia_nebezpecni}}"/>
+              <Choice value="{{choice_nar_migracia_zataz}}"/>
+              <Choice value="{{choice_nar_migracia_vlady}}"/>
+              <Choice value="{{choice_nar_migracia_konspiracia}}"/>
+              <Choice value="{{choice_nar_migracia_kultura}}"/>
+            </Choices>
+          </View>
+
+          <View visibleWhen="choice-selected" whenTagName="tema" whenChoiceValue="{{choice_tema_zdravie}}">
+            <Choices name="narativy_zdravie" toName="{{target}}" required="true" requiredMessage="{{q_narativy_required}}" showInline="false" choice="multiple">
+              <Choice value="{{choice_nar_zdravie_vakciny}}"/>
+              <Choice value="{{choice_nar_zdravie_elity}}"/>
+              <Choice value="{{choice_nar_zdravie_konvencna}}"/>
+              <Choice value="{{choice_nar_zdravie_alternativne}}"/>
+              <Choice value="{{choice_nar_zdravie_priciny}}"/>
+            </Choices>
+          </View>
+
+          <View visibleWhen="choice-selected" whenTagName="tema" whenChoiceValue="{{choice_tema_klima}}">
+            <Choices name="narativy_klima" toName="{{target}}" required="true" requiredMessage="{{q_narativy_required}}" showInline="false" choice="multiple">
+              <Choice value="{{choice_nar_klima_podvod}}"/>
+              <Choice value="{{choice_nar_klima_neexistuje}}"/>
+              <Choice value="{{choice_nar_klima_umela}}"/>
+              <Choice value="{{choice_nar_klima_ludstvo}}"/>
+              <Choice value="{{choice_nar_klima_riesenia}}"/>
+            </Choices>
+          </View>
+
+          <View visibleWhen="choice-selected" whenTagName="tema" whenChoiceValue="{{choice_tema_eunato}}">
+            <Choices name="narativy_eunato" toName="{{target}}" required="true" requiredMessage="{{q_narativy_required}}" showInline="false" choice="multiple">
+              <Choice value="{{choice_nar_eunato_autoritarska}}"/>
+              <Choice value="{{choice_nar_eunato_zapadne_elity}}"/>
+              <Choice value="{{choice_nar_eunato_babky}}"/>
+              <Choice value="{{choice_nar_eunato_nato}}"/>
+              <Choice value="{{choice_nar_eunato_kolaps}}"/>
+            </Choices>
+          </View>
+
+          <View visibleWhen="choice-selected" whenTagName="tema" whenChoiceValue="{{choice_tema_institucie}}">
+            <Choices name="narativy_institucie" toName="{{target}}" required="true" requiredMessage="{{q_narativy_required}}" showInline="false" choice="multiple">
+              <Choice value="{{choice_nar_inst_media}}"/>
+              <Choice value="{{choice_nar_inst_elity_svet}}"/>
+              <Choice value="{{choice_nar_inst_elity_volby}}"/>
+              <Choice value="{{choice_nar_inst_utlacanie}}"/>
+              <Choice value="{{choice_nar_inst_oficialne}}"/>
+            </Choices>
+          </View>
+
+          <View visibleWhen="choice-selected" whenTagName="tema" whenChoiceValue="{{choice_tema_rod}}">
+            <Choices name="narativy_rod" toName="{{target}}" required="true" requiredMessage="{{q_narativy_required}}" showInline="false" choice="multiple">
+              <Choice value="{{choice_nar_rod_sexualna_vychova}}"/>
+              <Choice value="{{choice_nar_rod_antikoncepcia}}"/>
+              <Choice value="{{choice_nar_rod_ivf}}"/>
+              <Choice value="{{choice_nar_rod_potrat}}"/>
+              <Choice value="{{choice_nar_rod_feminizmus}}"/>
+            </Choices>
+          </View>
+
+          <View visibleWhen="choice-selected" whenTagName="tema" whenChoiceValue="{{choice_tema_lgbt}}">
+            <Choices name="narativy_lgbt" toName="{{target}}" required="true" requiredMessage="{{q_narativy_required}}" showInline="false" choice="multiple">
+              <Choice value="{{choice_nar_lgbt_nastroj}}"/>
+              <Choice value="{{choice_nar_lgbt_transrodovi}}"/>
+              <Choice value="{{choice_nar_lgbt_homosexuali}}"/>
+              <Choice value="{{choice_nar_lgbt_zvyhodneni}}"/>
+              <Choice value="{{choice_nar_lgbt_dusevne_chori}}"/>
+            </Choices>
+          </View>
+        </View>
+
+        <View className="ls-done">
+          <Text name="done_4" value="{{done_vsetky_kroky}}"/>
+        </View>
+      </View>
+      {{/FULL}}
+
+      {{#BINARY}}
+      <View visibleWhen="choice-selected" whenTagName="obsah" whenChoiceValue="{{choice_obsah_dez}}">
+        <View className="ls-done"><Text name="done_dez" value="{{done_kompletne}}"/></View>
+      </View>
+      {{/BINARY}}
+    </View>
+  </View>
+</View>
