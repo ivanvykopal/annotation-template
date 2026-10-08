@@ -17,7 +17,7 @@ normalized back to canonical taxonomy keys.
 | `import_tasks.py` | Import `tasks.jsonl` into the project (needs `label-studio` installed) |
 | `cors_server.py` | Serve `snapshots/` on `127.0.0.1:8765` with CORS for the annotation UI |
 | `start.sh` / `start.bat` | Start the stack: CORS server + Label Studio |
-| `normalize_export.py` | Map exported choice values back to canonical keys |
+| `export_to_csv.py` | Convert a JSON export to the final dataset CSV (`label`, `language`, article columns) |
 | `tasks.example.snapshot.jsonl` / `tasks.example.text.jsonl` | Example task file per mode (snapshot and text; one mode per file — never mix) |
 | `snapshots/EXAMPLE.html` | Example served article snapshot |
 | `tools/` | Snapshot pipeline: raw article HTML → sanitized, self-contained snapshots (see [docs/SNAPSHOT_PIPELINE.md](docs/SNAPSHOT_PIPELINE.md)) |
@@ -130,6 +130,21 @@ Replaces every choice value with its canonical YAML key (`choice_*`);
 unrecognized values pass through unchanged and are reported on stderr and in
 the output's `unknown_values` list. Details: [docs/DATA.md](docs/DATA.md).
 
+### 10. Convert the export to the final CSV
+
+```bash
+python export_to_csv.py export.json --language sk -o annotations.csv
+```
+
+Writes the dataset CSV with the columns `article_id`,
+`article_publication_date`, `article_title`, `article_url`, `article_body`,
+`content` (title + blank line + body), `label` (`credible`/`disinfo`), and
+`language`. Labels are resolved through `build/value_mapping.json`, so this
+works for any language pack; undecided tasks (hard-to-say / off-topic) are
+skipped with a summary on stderr. The optional task data fields `article_id`,
+`published`, and `language` feed the CSV columns (see
+[docs/DATA.md](docs/DATA.md)).
+
 ## Adapting to another language
 
 1. Copy the language pack: `cp -r languages/sk languages/<code>`
@@ -197,7 +212,7 @@ all `choice_*` keys, independent of mode.
 | `setup_project.py` | `--title` (required), `--email` (optional, defaults to first user) |
 | `import_tasks.py` | `--file <tasks.jsonl>` (required), `--title` (required), `--force` (append even if the project has tasks) |
 | `cors_server.py` | `--root DIR` (default `snapshots/`), `--port PORT` (default `8765`) |
-| `normalize_export.py` | `--export <file>` (required), `--mapping <file>` (required), `-o/--output <file>` (required) |
+| `export_to_csv.py` | `export.json` (positional, required), `--mapping <file>` (default `build/value_mapping.json`), `--language <tag>` (e.g. `pl`, overridable per task via a `language` data field), `-o/--out <file>` (default `annotations.csv`) |
 
 ## Troubleshooting
 

@@ -192,3 +192,37 @@ A single-control result before/after normalization:
 
 `textarea` results (`value.text`) are never rewritten — only choice values
 are mapped.
+
+## Final dataset CSV
+
+`export_to_csv.py` turns an export into the final dataset CSV:
+
+```bash
+python export_to_csv.py export.json --language sk -o annotations.csv
+```
+
+Columns (in order): `article_id`, `article_publication_date`, `article_title`,
+`article_url`, `article_body`, `content`, `label`, `language`.
+
+Behavior:
+
+- `label` — the binary decision from the `obsah` question, resolved through
+  `build/value_mapping.json` to canonical keys and then mapped
+  (`choice_obsah_doverihodna` → `credible`, `choice_obsah_dez` → `disinfo`).
+  Language-independent: any language pack works. Tasks answered *hard-to-say*
+  or *off-topic* are skipped (counted as indecisive on stderr), as are tasks
+  with unmapped choice values (e.g. a stale mapping — rebuild with
+  `build.py`).
+- `article_body` — the task's `text` field (text mode). Snapshot-mode tasks
+  carry no body, so the column is empty for them; `content` is title-only.
+- `content` — `article_title` + blank line + `article_body`.
+- `language` — `--language` for all rows; a per-task `language` field in task
+  data overrides it.
+- `article_id` — the task's `article_id` field, falling back to `task<id>`.
+- `article_publication_date` — the task's `published` field (empty if absent).
+- If a task has several completed, non-cancelled annotations, the most
+  recent one wins; conflicting decisions are reported on stderr.
+
+So to feed these columns, put `article_id`, `published`, and `language` in
+your `tasks.jsonl` entries — all other extra fields pass through untouched
+but are unused by the converter.
