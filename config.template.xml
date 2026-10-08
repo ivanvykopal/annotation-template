@@ -18,7 +18,7 @@
   </Style>
 
   <View className="ls-wrap">
-    <!-- ĽAVÝ PANEL: článok -->
+    <!-- LEFT PANEL: article -->
     <View className="ls-article">
       <Header value="{{title_clanok}}" size="5" style="color:#6b7280; margin:0"/>
       <View className="ls-article-title">
@@ -35,13 +35,13 @@
       </View>
     </View>
 
-    <!-- PRAVÝ PANEL: formulár -->
+    <!-- RIGHT PANEL: form -->
     <View className="ls-form">
       <View className="ls-intro">
         <Text name="intro_text" value="{{intro_text}}"/>
       </View>
 
-      <!-- KROK I -->
+      <!-- STEP I -->
       <View className="ls-step">
         <Header value="{{title_celkove_hodnotenie}}" size="4"/>
 

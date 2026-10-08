@@ -34,7 +34,7 @@ def make_handler(root: Path) -> type[SimpleHTTPRequestHandler]:
                 self.send_header("Access-Control-Allow-Headers", "*")
             super().end_headers()
 
-        def do_OPTIONS(self) -> None:  # noqa: N804 (stdlib handler naming)
+        def do_OPTIONS(self) -> None:  # noqa: N802 (stdlib handler naming)
             self.send_response(200)
             self.end_headers()
 

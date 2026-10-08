@@ -38,6 +38,8 @@ def validate_task(obj: dict) -> list[str]:
 
     if "url" not in obj:
         errors.append("missing field 'url'")
+    elif not isinstance(obj["url"], str):
+        errors.append("'url' must be a string")
 
     has_snapshot = "snapshot_url" in obj
     has_text = "text" in obj

@@ -53,7 +53,8 @@ python build.py --language sk
 ```
 
 Writes `build/labeling_config.xml`, `build/guidelines.html` and
-`build/value_mapping.json` (mode-independent superset of all choice keys).
+`build/value_mapping.json` (mode-independent superset of all choice keys,
+keyed by the raw unescaped label text Label Studio exports).
 Flags: `--mode binary|full` (default `binary`), `--text` (text mode, no
 snapshot embed). See *Modes* below.
 
@@ -138,9 +139,11 @@ the output's `unknown_values` list. Details: [docs/DATA.md](docs/DATA.md).
 4. Build and create the project with `--language <code>`.
 
 `build/value_mapping.json` is keyed by language
-(`{"<lang>": {rendered_value: canonical_key}}`); `normalize_export.py`
-flattens all languages into one lookup, so a single normalizer run handles
-exports from any language's project.
+(`{"<lang>": {rendered_value: canonical_key}}`). Each build merges its
+language's mapping into the existing file, so building several languages
+accumulates a combined mapping; `normalize_export.py` flattens all
+languages present into one lookup, so a single normalizer run handles
+exports from any built language's project.
 
 ## Adapting the taxonomy
 

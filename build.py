@@ -93,11 +93,16 @@ def render(template: str, strings: dict, mode: str, text_mode: bool) -> str:
 
 
 def build_value_mapping(strings: dict) -> dict:
-    """Map rendered (escaped) choice values back to canonical YAML keys."""
+    """Map raw (unescaped) choice values back to canonical YAML keys.
+
+    Label Studio exports the UNescaped label text, so the mapping must be
+    keyed by the raw YAML value, not the XML-escaped form that appears in
+    the rendered labeling config.
+    """
     mapping = {}
     for key, value in strings.items():
         if key.startswith("choice_"):
-            mapping[html.escape(str(value), quote=True)] = key
+            mapping[str(value)] = key
     return mapping
 
 
@@ -119,17 +124,33 @@ def main(argv: list[str] | None = None) -> int:
 
     try:
         rendered = render(template, strings, args.mode, args.text)
-        mapping = {args.language: build_value_mapping(strings)}
     except BuildError as e:
         print(f"error: {e}", file=sys.stderr)
         return 1
 
     out_dir = ROOT / "build"
     out_dir.mkdir(exist_ok=True)
+
+    # Accumulate mappings across languages: merge this language's mapping
+    # into any existing build/value_mapping.json so researchers who build
+    # several languages keep a combined mapping for normalize_export.py.
+    mapping_path = out_dir / "value_mapping.json"
+    combined = {}
+    if mapping_path.exists():
+        try:
+            combined = json.loads(mapping_path.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError) as e:
+            print(f"error: cannot read existing {mapping_path}: {e}", file=sys.stderr)
+            return 1
+    if not isinstance(combined, dict):
+        print(f"error: {mapping_path} is not a JSON object", file=sys.stderr)
+        return 1
+    combined[args.language] = build_value_mapping(strings)
+
     (out_dir / "labeling_config.xml").write_text(rendered, encoding="utf-8")
     (out_dir / "guidelines.html").write_text(guidelines, encoding="utf-8")
-    (out_dir / "value_mapping.json").write_text(
-        json.dumps(mapping, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    mapping_path.write_text(
+        json.dumps(combined, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
     print(f"wrote {out_dir / 'labeling_config.xml'} ({args.language}, mode={args.mode}, text_mode={args.text})")
     return 0

@@ -41,3 +41,8 @@ def test_both_snapshot_and_text():
 def test_title_not_string():
     task = {"title": 42, "text": "Body", "url": "http://x"}
     assert any("title" in e for e in validate_task(task))
+
+
+def test_url_not_string():
+    task = {"title": "Article E", "text": "Body", "url": 42}
+    assert any("'url' must be a string" in e for e in validate_task(task))

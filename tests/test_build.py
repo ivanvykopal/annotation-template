@@ -81,25 +81,58 @@ def test_value_xml_escaped():
 
 
 def test_value_mapping_covers_rendered_choices():
-    """(f) rendered Choice values == mapping keys, both directions (full render)."""
+    """(f) unescaped rendered Choice values == mapping keys (full render)."""
     out = render(mode="full", text_mode=False)
     mapping = build.build_value_mapping(STRINGS)
-    rendered = set(re.findall(r'<Choice value="([^"]*)"', out))
+    rendered = {html_unescape(v) for v in re.findall(r'<Choice value="([^"]*)"', out)}
     mapped = set(mapping)
     assert rendered == mapped, (
         f"only in rendered: {sorted(rendered - mapped)}; "
         f"only in mapping: {sorted(mapped - rendered)}"
     )
-    # reverse: rendered value maps back to the canonical key
+    # mapping keys are the RAW YAML values, not the XML-escaped form
     for value, key in mapping.items():
-        assert STRINGS[key] == html_unescape(value)
+        assert STRINGS[key] == value
+
+
+def test_value_mapping_keys_are_raw_yaml_values():
+    """A label containing XML-special chars maps by its raw, unescaped value."""
+    strings = dict(STRINGS)
+    strings["choice_amp_test"] = "Tom & Jerry"
+    mapping = build.build_value_mapping(strings)
+    assert mapping["Tom & Jerry"] == "choice_amp_test"
+    assert "Tom &amp; Jerry" not in mapping
+
+
+def test_value_mapping_merges_on_rebuild(tmp_path, monkeypatch):
+    """Rebuilding with another language merges into value_mapping.json."""
+    import json
+
+    for lang in ("sk", "xx"):
+        lang_dir = tmp_path / "languages" / lang
+        lang_dir.mkdir(parents=True)
+        (lang_dir / "strings.yaml").write_text(
+            yaml.safe_dump(STRINGS, allow_unicode=True), encoding="utf-8"
+        )
+        (lang_dir / "guidelines.html").write_text("", encoding="utf-8")
+    (tmp_path / "config.template.xml").write_text(TEMPLATE, encoding="utf-8")
+    monkeypatch.setattr(build, "ROOT", tmp_path)
+
+    assert build.main(["--language", "sk"]) == 0
+    assert build.main(["--language", "xx"]) == 0
+    combined = json.loads(
+        (tmp_path / "build" / "value_mapping.json").read_text(encoding="utf-8")
+    )
+    assert set(combined) == {"sk", "xx"}
+    assert combined["sk"] == build.build_value_mapping(STRINGS)
+    assert combined["xx"] == build.build_value_mapping(STRINGS)
 
 
 def test_value_mapping_superset_of_binary_render_choices():
     """Binary (snapshot) render's choices are all covered by the mapping."""
     out = render(mode="binary", text_mode=False)
     mapping = build.build_value_mapping(STRINGS)
-    rendered = set(re.findall(r'<Choice value="([^"]*)"', out))
+    rendered = {html_unescape(v) for v in re.findall(r'<Choice value="([^"]*)"', out)}
     assert rendered <= set(mapping)
 
 

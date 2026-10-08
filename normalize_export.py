@@ -23,7 +23,16 @@ def _flatten_mapping(mapping: dict) -> dict:
     flat = {}
     for key, value in mapping.items():
         if isinstance(value, dict):
-            flat.update(value)
+            for rendered, canonical in value.items():
+                if rendered in flat and flat[rendered] != canonical:
+                    # Cross-language collision: the same rendered value maps
+                    # to different keys in different languages. Last wins.
+                    print(
+                        f"warning: value {rendered!r} maps to both "
+                        f"{flat[rendered]!r} and {canonical!r}; using {canonical!r} (last wins)",
+                        file=sys.stderr,
+                    )
+                flat[rendered] = canonical
         else:
             flat[key] = value
     return flat
@@ -46,7 +55,7 @@ def normalize(export, mapping: dict) -> dict:
     for task in tasks:
         for annotation in task.get("annotations", []) or []:
             for entry in annotation.get("result", []) or []:
-                if entry.get("type", "").lower() not in RESULT_TYPES:
+                if (entry.get("type") or "").lower() not in RESULT_TYPES:
                     continue
                 value = entry.get("value")
                 if not isinstance(value, dict):
@@ -60,7 +69,7 @@ def normalize(export, mapping: dict) -> dict:
                     value["choice"] = _map_choice(
                         value["choice"], lookup, unknown_values
                     )
-    return {"tasks": tasks, "unknown_values": sorted(set(unknown_values))}
+    return {"tasks": tasks, "unknown_values": sorted({str(v) for v in unknown_values})}
 
 
 def _map_choice(choice, lookup: dict, unknown_values: list):

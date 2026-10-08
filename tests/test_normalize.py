@@ -76,6 +76,49 @@ def test_no_annotations_and_empty_result_entries_survive(mapping):
     assert out["tasks"][1]["annotations"][0]["result"] == []
 
 
+def test_null_type_entry_is_skipped(mapping):
+    """An explicit null type must not crash the type check."""
+    out = normalize(
+        [{"id": 5, "annotations": [{"result": [{"type": None, "value": {"choices": ["Anonymný autor"]}}]}]}],
+        mapping,
+    )
+    assert out["tasks"][0]["annotations"][0]["result"][0]["value"]["choices"] == [
+        "Anonymný autor"
+    ]
+
+
+def test_non_string_unknown_values_are_stringified(mapping, capsys):
+    """Non-string choice values pass through and unknown_values stays sortable."""
+    export = [
+        {"id": 6, "annotations": [{"result": [
+            {"type": "choices", "value": {"choices": [42, "Unknown Label", None, 42]}},
+            {"type": "choice", "value": {"choice": 7}},
+        ]}]}
+    ]
+    out = normalize(export, mapping)
+    assert out["tasks"][0]["annotations"][0]["result"][0]["value"]["choices"] == [
+        42, "Unknown Label", None, 42
+    ]
+    assert out["tasks"][0]["annotations"][0]["result"][1]["value"]["choice"] == 7
+    assert out["unknown_values"] == ["42", "7", "None", "Unknown Label"]
+
+
+def test_cross_language_collision_warns_last_wins(capsys):
+    """Same rendered value with different keys across languages warns; last wins."""
+    mapping = {
+        "sk": {"Hodnota": "choice_a"},
+        "cs": {"Hodnota": "choice_b"},
+    }
+    export = [{"id": 7, "annotations": [{"result": [
+        {"type": "choices", "value": {"choices": ["Hodnota"]}}
+    ]}]}]
+    out = normalize(export, mapping)
+    assert out["tasks"][0]["annotations"][0]["result"][0]["value"]["choices"] == ["choice_b"]
+    err = capsys.readouterr().err
+    assert "'Hodnota'" in err
+    assert "choice_a" in err and "choice_b" in err
+
+
 def test_cli_end_to_end(tmp_path):
     import subprocess
     import sys

@@ -126,8 +126,8 @@ Field walkthrough:
     `choice` (single-select, `value.choice` is a scalar) or `textarea`
     (`value.text` is a list of strings);
   - `value` — the **rendered** labels as the annotator saw them (the
-    translated strings from `strings.yaml`, HTML-escaped if they contain
-    `&`, `<`, `>`, `"`).
+    translated strings from `strings.yaml`, unescaped — special characters
+    like `&` appear literally).
 
 ## Normalizing an export
 
@@ -145,7 +145,9 @@ the stable canonical keys. `build.py` emits the mapping as
 ```
 
 It contains **every** `choice_*` key of the language pack, independent of the
-build mode. Run the normalizer:
+build mode. Each build merges its language's mapping into any existing
+`build/value_mapping.json`, so building several languages keeps a combined
+mapping. Run the normalizer:
 
 ```bash
 python normalize_export.py --export export.json --mapping build/value_mapping.json -o normalized.json
@@ -158,7 +160,8 @@ Behavior:
   canonical key;
 - the mapping is flattened across all languages first, so multi-language
   exports normalize in one pass (a flat `{value: key}` mapping is also
-  accepted);
+  accepted); if the same rendered value maps to different keys in
+  different languages, a stderr warning is emitted and the last one wins;
 - values not present in the mapping pass through unchanged and are collected
   (deduplicated, sorted) in `unknown_values`, which is also printed as a
   stderr warning; the exit code stays 0;
