@@ -1,0 +1,4 @@
+# Ignore everything except the repository files needed for scaffolding
+*
+!.gitignore
+!README.md
