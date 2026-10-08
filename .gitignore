@@ -1,4 +1,10 @@
-# Ignore everything except the repository files needed for scaffolding
-*
-!.gitignore
-!README.md
+venv/
+__pycache__/
+*.pyc
+build/
+.ruff_cache/
+snapshots/*
+!snapshots/EXAMPLE.html
+tasks.jsonl
+*.log
+
