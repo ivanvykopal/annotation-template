@@ -1,0 +1,40 @@
+[
+  {
+    "id": 1,
+    "data": {"text": "task one"},
+    "annotations": [
+      {
+        "result": [
+          {
+            "from_name": "autor",
+            "to_name": "text",
+            "type": "choices",
+            "value": {"choices": ["Anonymný autor", "Dezinformácia"]}
+          },
+          {
+            "from_name": "obsah",
+            "to_name": "text",
+            "type": "choice",
+            "value": {"choice": "Neznámy autor"}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "data": {"text": "task two"},
+    "annotations": [
+      {
+        "result": [
+          {
+            "from_name": "autor",
+            "to_name": "text",
+            "type": "choices",
+            "value": {"choices": ["Anonymný autor", "Unknown Label"]}
+          }
+        ]
+      }
+    ]
+  }
+]
