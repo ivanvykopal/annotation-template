@@ -11,6 +11,7 @@ normalized back to canonical taxonomy keys.
 | Path | Purpose |
 |---|---|
 | `config.template.xml` | Shared labeling-config template with `{{key}}` placeholders and `{{#MODE}}` blocks |
+| `languages/en/` | English language pack (from the original English guideline documents) |
 | `languages/sk/` | Slovak language pack: `strings.yaml` (all `{{key}}` values) + `guidelines.html` (annotator instructions) |
 | `build.py` | Render the template → `build/labeling_config.xml`, `build/guidelines.html`, `build/value_mapping.json` |
 | `setup_project.py` | Create/update the Label Studio project from `build/` artifacts (needs `label-studio` installed) |
@@ -184,6 +185,12 @@ skipped with a summary on stderr. The optional task data fields `article_id`,
 3. Translate `languages/<code>/guidelines.html` (plain HTML, shown to
    annotators).
 4. Build and create the project with `--language <code>`.
+
+Two packs ship as references: `sk` (the original Slovak) and `en` (from the
+original English guideline documents) — copy whichever is closer to your
+target language.
+
+## value_mapping.json across languages
 
 `build/value_mapping.json` is keyed by language
 (`{"<lang>": {rendered_value: canonical_key}}`). Each build merges its

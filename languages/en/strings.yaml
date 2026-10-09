@@ -1,0 +1,200 @@
+# English language pack — terminology from the English guideline documents
+# (docs/"How to perform an article evaluation - instruction.docx",
+#  "Manipulation techniques - examples and definitions.docx",
+#  "Narratives.docx" in the parent repository).
+# Keys map 1:1 to {{key}} placeholders in config.template.xml.
+# {{target}} is a build-injected variable (web/text), not a key in this file.
+
+# --- Panel headers / step titles ---
+title_clanok: "📰 Article under evaluation"
+title_celkove_hodnotenie: "Overall assessment"
+title_krok_2: "Step 2 of 4 · Detailed analysis of the content"
+title_krok_3: "Step 3 of 4 · Motivation and intentions"
+title_krok_4: "Step 4 of 4 · Narratives"
+title_fakt_checking: "🔎 Fact-checking"
+title_manipulativne_techniky: "🎭 Manipulation techniques used"
+
+# --- Intro ---
+intro_text: "Procedure: 1) Read the whole article on the left. 2) Fill in the questions from top to bottom. Further steps appear automatically depending on your answers. Hovering over an option shows its explanation. Detailed instructions are available under Instructions."
+
+# --- Questions (headers) ---
+q_1_1: "1.1 Who is the author of the article?"
+q_1_2: "1.2 What is the nature of the content?"
+q_2_1: "2.1 What type of disinformation is it?"
+q_3_1: "3.1 Why is the author spreading disinformation? (motivation)"
+q_3_2: "3.2 What is the purpose of spreading it? (intention)"
+q_3_3: "3.3 What emotions does the article evoke?"
+q_3_4: "3.4 Topic of the article"
+
+# --- Required messages ---
+q_1_1_required: "Select the author type."
+q_1_2_required: "Select the nature of the content."
+q_2_1_required: "Select at least one type of disinformation."
+q_manipulacne_techniky_required: "For manipulation, select at least one technique."
+q_3_1_required: "Select at least one motivation."
+q_3_2_required: "Select at least one intention."
+q_3_3_required: "Select at least one emotion."
+q_3_4_required: "Select a topic."
+q_narativy_required: "Select at least one narrative of the chosen topic."
+
+# --- Help texts ---
+help_autor: "The author's rating does not affect the assessment of the content of the article."
+help_multi: "You can select multiple options."
+help_fakt_checking: "Quote the false statement and provide a source that refutes it. First try Fact-check finder or Google Fact Check Tools."
+help_manipulacne_techniky: "Mark all techniques the article uses (see the document \"Manipulation techniques - examples and definitions\")."
+help_emocie: "Put yourself in the shoes of a person who believes the disinformation. What would they feel while reading? You can select multiple options."
+help_narativy: "How does the author reproduce the disinformation? Narratives appear after selecting a topic in 3.4. You can select multiple options."
+
+# --- Notes ---
+note_obsah: "⚠ Requires reading the whole article. Selecting any option ends the assessment."
+note_typ: "⚠ \"Conspiracy theory\" is not combined with \"Falseness/fabrication\" or \"Manipulation\"."
+note_mot: "⚠ \"Chosen one/Savior complex\" cannot be the only motivation — select a main motivation as well."
+note_tema: "⚠ Select the same topic as the one assigned to the article in your list. The narratives in step 4 are shown based on it."
+
+# --- Placeholders ---
+ph_autor_meno_neznamy: "Author's name (if stated in the article)"
+ph_autor_meno_znamy: "Author's name"
+ph_neprave_tvrdenie: "False statement from the article…"
+ph_vyvracajuci_zdroj: "Link (URL) to a source that refutes the statement…"
+
+# --- Completion banners ---
+done_kompletne: "✅ The assessment is complete. Check your answers and click \"Submit\"."
+done_vsetky_kroky: "✅ After completing all steps, check your answers and click \"Submit\". Once submitted, the assessment cannot be changed."
+
+# --- 1.1 Author ---
+choice_autor_anonymny: "Anonymous"
+hint_autor_anonymny: "No information enabling the identification of the author, or only unknown initials."
+choice_autor_neznamy: "Unknown author"
+hint_autor_neznamy: "Only a name and surname, which does not allow broader identification, or the data may be potentially fabricated."
+choice_autor_znamy: "Known author"
+hint_autor_znamy: "The author can be easily identified and more information about them can be found."
+
+# --- 1.2 Content ---
+choice_obsah_doverihodna: "Credible information"
+hint_obsah_doverihodna: "Factual, verifiable information with cited sources and neutral language. Ends the assessment."
+choice_obsah_dez: "Disinformation"
+hint_obsah_dez: "False, inaccurate, or misleading information; it must be possible to prove that it is untrue or that manipulation techniques were used."
+choice_obsah_tazko: "Hard to say"
+hint_obsah_tazko: "The content is not verifiable. Ends the assessment."
+choice_obsah_nezdochne: "Inconsistent with the topic"
+hint_obsah_nezdochne: "The article is not relevant to the topic or does not display properly. Ends the assessment."
+
+# --- 2.1 Type of disinformation ---
+choice_typ_nepravdost: "Falseness/fabrication"
+hint_typ_nepravdost: "Explicitly false content or fabricated documents, data, or quotes. Requires fact-checking."
+choice_typ_manipulacia: "Manipulation"
+hint_typ_manipulacia: "Bending or distorting facts — incomplete statements, inappropriate context, selective use of information."
+choice_typ_trolling: "Trolling/satire"
+hint_typ_trolling: "Controversial, often untrue content presented in a caricatured, playful manner. Also select falseness and/or manipulation."
+choice_typ_konspiracia: "Conspiracy theory"
+hint_typ_konspiracia: "An alternative explanation of an event involving a group of conspirators hiding the truth. Must meet most of the CONSPIR traits."
+
+# --- Manipulation techniques ---
+choice_mt_cherry_picking: "Cherry Picking"
+hint_mt_cherry_picking: "Emphasizing only the facts that support the thesis."
+choice_mt_quote_mining: "Quote Mining"
+hint_mt_quote_mining: "A quote taken out of context in a way that changes its meaning."
+choice_mt_anegdota: "Anecdote"
+hint_mt_anegdota: "A single story presented as general evidence."
+choice_mt_whataboutism: "Whataboutism"
+hint_mt_whataboutism: "Deflecting attention by pointing to someone else's problem (\"and what about…?\")."
+choice_mt_strawman: "Strawman"
+hint_mt_strawman: "Distorting an opponent's opinion to make it easier to refute."
+choice_mt_sugestivne_otazky: "Leading Questions"
+hint_mt_sugestivne_otazky: "Questions that suggest an answer or arouse suspicion."
+choice_mt_apel_na_emocie: "Appeal to Emotion"
+hint_mt_apel_na_emocie: "Trying to persuade with emotions instead of arguments."
+choice_mt_falosna_pricina: "False cause"
+hint_mt_falosna_pricina: "Mistakenly linking cause and effect."
+choice_mt_zvelicovanie: "Exaggeration"
+hint_mt_zvelicovanie: "Overstated emphasis or magnification of a phenomenon."
+choice_mt_chybna_referencia: "False reference"
+hint_mt_chybna_referencia: "Referring to a source that does not support the claim or does not exist."
+
+# --- 3.1 Motivation ---
+choice_mot_vnutropoliticka: "Internal political"
+hint_mot_vnutropoliticka: "Content directed against one political option (opposition or government)."
+choice_mot_zahranicnopoliticka: "External political"
+hint_mot_zahranicnopoliticka: "Propaganda weakening international alliances (EU, NATO) or the country's defense capabilities; promoting the interests of foreign states."
+choice_mot_ekonomicka: "Economic/Financial"
+hint_mot_ekonomicka: "Promoting products or encouraging financial support for the author/organization."
+choice_mot_popularita: "Gaining popularity"
+hint_mot_popularita: "Spreading content in order to gain attention and standing."
+choice_mot_socialna: "Social"
+hint_mot_socialna: "Creating an \"us/them\" division, antagonizing society."
+choice_mot_komplex_vyvoleneho: "Chosen one/Savior complex"
+hint_mot_komplex_vyvoleneho: "The urge to \"open people's eyes\", ego building; typical of conspiracy theories."
+
+# --- 3.2 Intention ---
+choice_zamer_podkopavanie_institucii: "Undermining the credibility of public institutions"
+hint_zamer_podkopavanie_institucii: "Eroding trust in official communication, insinuating bad intentions or corruption."
+choice_zamer_zmena_politickych_nazorov: "Changing political views"
+hint_zamer_zmena_politickych_nazorov: "Influencing voter preferences, promoting \"alternative\" politicians."
+choice_zamer_podkopavanie_aliancii: "Undermining international organizations and alliances"
+hint_zamer_podkopavanie_aliancii: "Portraying the EU, NATO, etc. as entities that take away states' sovereignty."
+choice_zamer_stereotypy: "Promoting social stereotypes/antagonisms"
+hint_zamer_stereotypy: "Deepening social divisions, xenophobia, aversion to groups."
+choice_zamer_antivedecke: "Promoting anti-scientific views"
+hint_zamer_antivedecke: "Portraying science and scientists as an enemy."
+
+# --- 3.3 Emotions ---
+choice_emo_strach: "Fear/sense of threat"
+choice_emo_hnev: "Anger"
+choice_emo_odpor: "Opposition/rebellion"
+choice_emo_neistota: "Uncertainty/sense of confusion"
+choice_emo_nadej: "Hope (false hope)"
+choice_emo_hrdost: "Pride"
+choice_emo_pohrdanie: "Contempt"
+choice_emo_lahostajnost: "Indifference"
+
+# --- 3.4 Topics ---
+choice_tema_vojna: "Ukraine war and refugees"
+choice_tema_migracia: "Anti-migration and xenophobia"
+choice_tema_zdravie: "Health (including COVID-19 and vaccines)"
+choice_tema_klima: "Climate change and the energy crisis"
+choice_tema_eunato: "Anti-Europeanism and anti-Atlanticism (anti-EU, anti-NATO)"
+choice_tema_institucie: "Distrust in institutions and media (public institutions)"
+choice_tema_rod: "Gender-based disinformation"
+choice_tema_lgbt: "Disinformation about LGBTQIA+"
+
+# --- Step 4: Narratives ---
+choice_nar_vojna_nebezpecenstvo: "Ukrainian refugees are a danger/burden"
+choice_nar_vojna_zla_krajina: "Ukraine is an evil, aggressive and dangerous country"
+choice_nar_vojna_zapad_nemoralni: "The West and their allies are immoral/hostile/ineffective"
+choice_nar_vojna_inscenovana: "Conflict is a staged event prepared by outside forces"
+choice_nar_vojna_rusko_silne: "Russia is strong and winning the war"
+choice_nar_migracia_nebezpecni: "Migrants are dangerous"
+choice_nar_migracia_zataz: "Migrants are a burden on the economy"
+choice_nar_migracia_vlady: "Governments fail to take proper action on migration crisis"
+choice_nar_migracia_konspiracia: "Migration is a conspiracy of global elites"
+choice_nar_migracia_kultura: "Migrants are destroying local culture and breaking up local communities"
+choice_nar_zdravie_vakciny: "Vaccines are dangerous/ineffective/immoral"
+choice_nar_zdravie_elity: "Global elites deliberately cause pandemics and diseases"
+choice_nar_zdravie_konvencna: "Conventional medicine is ineffective and corrupt"
+choice_nar_zdravie_alternativne: "Alternative treatments are more effective than conventional ones"
+choice_nar_zdravie_priciny: "Conventional medicine is wrong about the causes of diseases"
+choice_nar_klima_podvod: "Climate change is a hoax"
+choice_nar_klima_neexistuje: "Global warming does not exist/is not a serious threat"
+choice_nar_klima_umela: "The energy crisis is artificially created"
+choice_nar_klima_ludstvo: "Humanity is not responsible for global warming"
+choice_nar_klima_riesenia: "Solutions to reduce human impact on environment and climate are a conspiracy"
+choice_nar_eunato_autoritarska: "European Union is authoritarian"
+choice_nar_eunato_zapadne_elity: "Western elites want to destroy the natural order and traditional values"
+choice_nar_eunato_babky: "Eastern European countries are puppets of the West"
+choice_nar_eunato_nato: "NATO is authoritarian/warmongering"
+choice_nar_eunato_kolaps: "Collapse of Western civilization is imminent"
+choice_nar_inst_media: "Media deliberately spread lies"
+choice_nar_inst_elity_svet: "Elites want to take over the world"
+choice_nar_inst_elity_volby: "Elites manipulate elections"
+choice_nar_inst_utlacanie: "State and international institutions only serve to oppress citizens"
+choice_nar_inst_oficialne: "Official information is a tool to deceive citizens"
+choice_nar_rod_sexualna_vychova: "Sex education is a threat to children"
+choice_nar_rod_antikoncepcia: "Contraception is against nature/dangerous/immoral"
+choice_nar_rod_ivf: "In vitro fertilization is against nature/dangerous/immoral"
+choice_nar_rod_potrat: "Abortion is evil/immoral/dangerous"
+choice_nar_rod_feminizmus: "Feminism is a tool to destroy the natural order and traditional values"
+choice_nar_lgbt_nastroj: "LGBT+ is a tool to destroy the natural order and traditional values"
+choice_nar_lgbt_transrodovi: "Transgender people are a threat"
+choice_nar_lgbt_homosexuali: "Homosexuals are a threat"
+choice_nar_lgbt_zvyhodneni: "LGBT+ people are privileged"
+choice_nar_lgbt_dusevne_chori: "LGBT+ people are mentally ill"
