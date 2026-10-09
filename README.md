@@ -26,6 +26,31 @@ normalized back to canonical taxonomy keys.
 Data formats (task JSONL schemas, export walkthrough) are documented in
 [docs/DATA.md](docs/DATA.md).
 
+## Try the included example (5 minutes)
+
+This reproduces two demo projects — one per task mode — using the shipped
+example files. Run from this directory with the venv from step 1 activated.
+
+```bash
+# snapshot mode: article rendered as embedded HTML
+python build.py --language sk
+python setup_project.py --title "Annotation Template Demo"
+python import_tasks.py --file tasks.example.snapshot.jsonl --title "Annotation Template Demo"
+
+# text mode: article body as plain text (separate build AND separate project)
+python build.py --language sk --text
+python setup_project.py --title "Annotation Template Demo (text)"
+python import_tasks.py --file tasks.example.text.jsonl --title "Annotation Template Demo (text)"
+
+# rebuild the default (snapshot) config so build/ matches the first project
+python build.py --language sk
+```
+
+Then start the stack (step 6 below), open <http://localhost:8080>, and click
+through the one task in each project. Delete the two demo projects in the UI
+when done. The same steps with your own `tasks.jsonl` and `--language <code>`
+are the real workflow.
+
 ## Quickstart
 
 Requirements: Python 3.10+ (verified with 3.13). All commands below are run
