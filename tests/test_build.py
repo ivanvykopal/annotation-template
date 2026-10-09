@@ -33,6 +33,9 @@ def test_binary_snapshot_render():
     assert "$snapshot_url" in out
     # BINARY banner kept
     assert 'name="done_dez"' in out
+    # 1.1 author question is fine-grained only — absent in binary mode
+    assert 'name="autor"' not in out
+    assert "{{q_1_1}}" not in out
 
 
 def test_full_render_contains_step2_block():
@@ -51,7 +54,8 @@ def test_full_render_contains_step2_block():
         f"whenChoiceValue(s) without matching Choice: {sorted(when_values - choice_values)}"
     )
     # Step 2 block (krok 2) present in full mode
-    assert "2.1" in out
+    # 1.1 author question present in full mode
+    assert 'name="autor"' in out
 
 
 def test_text_mode_render():
@@ -140,3 +144,40 @@ def html_unescape(s):
     import html
 
     return html.unescape(s)
+
+
+GUIDELINES = """<h1>How to evaluate</h1>
+{{#FULL}}
+<h2>STEP II - Detailed analysis</h2>
+<p>Fine-grained instructions here.</p>
+{{/FULL}}
+<h2>STEP V - Conclusion</h2>
+<p>Click submit.</p>
+"""
+
+
+def test_guidelines_binary_mode_strips_full_sections():
+    from build import render_guidelines
+    out = render_guidelines(GUIDELINES, mode="binary")
+    assert "STEP II" not in out and "Fine-grained" not in out
+    assert "STEP V" in out
+    assert "{{" not in out and "}}" not in out
+
+
+def test_guidelines_full_mode_keeps_everything():
+    from build import render_guidelines
+    out = render_guidelines(GUIDELINES, mode="full")
+    assert "STEP II" in out and "STEP V" in out
+    assert "{{" not in out and "}}" not in out
+
+
+def test_real_guidelines_marked_and_mode_aware():
+    from build import render_guidelines
+    for lang in ("sk", "en"):
+        raw = (Path(__file__).resolve().parent.parent
+               / "languages" / lang / "guidelines.html").read_text(encoding="utf-8")
+        binary = render_guidelines(raw, mode="binary")
+        full = render_guidelines(raw, mode="full")
+        assert "KROK II" not in binary and "STEP II" not in binary, lang
+        assert "KROK I" in binary or "STEP I" in binary, lang
+        assert "KROK II" in full or "STEP II" in full, lang

@@ -79,7 +79,11 @@ python build.py --language sk
 
 Writes `build/labeling_config.xml`, `build/guidelines.html` and
 `build/value_mapping.json` (mode-independent superset of all choice keys,
-keyed by the raw unescaped label text Label Studio exports).
+keyed by the raw unescaped label text Label Studio exports). Both the config
+and the guidelines are mode-aware: sections of `guidelines.html` wrapped in
+`{{#FULL}}`…`{{/FULL}}` (the fine-grained Steps II–IV instructions) are
+stripped in `binary` mode so annotators never see instructions for
+questions their form does not contain.
 Flags: `--mode binary|full` (default `binary`), `--text` (text mode, no
 snapshot embed). See *Modes* below.
 

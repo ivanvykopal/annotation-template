@@ -91,6 +91,20 @@ def render(template: str, strings: dict, mode: str, text_mode: bool) -> str:
 
     return text
 
+def render_guidelines(guidelines: str, mode: str) -> str:
+    """Render guidelines.html for the build mode.
+
+    Sections wrapped in {{#FULL}}...{{/FULL}} describe the fine-grained
+    (Steps II-IV) annotation and are removed in binary mode so annotators
+    never see instructions for questions that do not appear in their form.
+    """
+    if mode not in ("binary", "full"):
+        raise BuildError(f"unknown mode: {mode!r}")
+    if mode != "full":
+        guidelines = _strip_block(guidelines, "FULL")
+    guidelines = _strip_marker_line(guidelines, "FULL")
+    return guidelines
+
 
 def build_value_mapping(strings: dict) -> dict:
     """Map raw (unescaped) choice values back to canonical YAML keys.
@@ -148,7 +162,7 @@ def main(argv: list[str] | None = None) -> int:
     combined[args.language] = build_value_mapping(strings)
 
     (out_dir / "labeling_config.xml").write_text(rendered, encoding="utf-8")
-    (out_dir / "guidelines.html").write_text(guidelines, encoding="utf-8")
+    (out_dir / "guidelines.html").write_text(render_guidelines(guidelines, args.mode), encoding="utf-8")
     mapping_path.write_text(
         json.dumps(combined, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )

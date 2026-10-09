@@ -45,6 +45,7 @@
       <View className="ls-step">
         <Header value="{{title_celkove_hodnotenie}}" size="4"/>
 
+        {{#FULL}}
         <Header value="{{q_1_1}}" className="ls-q" size="5"/>
         <View className="ls-help">
           <Text name="h_autor" value="{{help_autor}}"/>
@@ -61,6 +62,7 @@
         <View visibleWhen="choice-selected" whenTagName="autor" whenChoiceValue="{{choice_autor_znamy}}">
           <TextArea name="autor_meno_znamy" toName="{{target}}" showSubmitButton="false" rows="1" placeholder="{{ph_autor_meno_znamy}}" required="false"/>
         </View>
+        {{/FULL}}
 
         <Header value="{{q_1_2}}" className="ls-q" size="5"/>
         <View className="ls-note">
