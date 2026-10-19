@@ -14,7 +14,7 @@ normalized back to canonical taxonomy keys.
 | `languages/en/` | English language pack (from the original English guideline documents) |
 | `languages/sk/` | Slovak language pack: `strings.yaml` (all `{{key}}` values) + `guidelines.html` (annotator instructions) |
 | `build.py` | Render the template → `build/labeling_config.xml`, `build/guidelines.html`, `build/value_mapping.json` |
-| `setup_project.py` | Create/update the Label Studio project from `build/` artifacts (needs `label-studio` installed) |
+| `setup_project.py` | Create/update the Label Studio project from `build/` artifacts (needs `label-studio` installed); sets **2 annotations per task** (double annotation) |
 | `import_tasks.py` | Import `tasks.jsonl` into the project (needs `label-studio` installed) |
 | `cors_server.py` | Serve `snapshots/` on `127.0.0.1:8765` with CORS for the annotation UI |
 | `start.sh` / `start.bat` | Start the stack: CORS server + Label Studio |

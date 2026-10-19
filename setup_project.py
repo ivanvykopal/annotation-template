@@ -68,6 +68,9 @@ def main() -> None:
     project.validate_label_config(config)
     project.expert_instruction = guidelines
     project.show_instruction = True
+    # double annotation: a task leaves the queue only after 2 annotations
+    # (Settings -> Quality -> "Annotations per task")
+    project.maximum_annotations = 2
     project.save()
     print("config valid, tasks:", project.tasks.count())
 
