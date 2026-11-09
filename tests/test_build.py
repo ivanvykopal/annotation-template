@@ -69,16 +69,16 @@ def test_text_mode_render():
 def test_missing_key_raises_build_error():
     """(d) missing key -> BuildError naming the key."""
     strings = dict(STRINGS)
-    del strings["title_clanok"]
+    del strings["intro_text"]
     with pytest.raises(build.BuildError) as excinfo:
         build.render(TEMPLATE, strings, "binary", False)
-    assert "title_clanok" in str(excinfo.value)
+    assert "intro_text" in str(excinfo.value)
 
 
 def test_value_xml_escaped():
     """(e) value with XML special chars is escaped."""
     out = render(
-        strings={**STRINGS, "title_clanok": "Tom & Jerry"}
+        strings={**STRINGS, "intro_text": "Tom & Jerry"}
     )
     assert "Tom &amp; Jerry" in out
     ET.fromstring(out)
@@ -181,3 +181,14 @@ def test_real_guidelines_marked_and_mode_aware():
         assert "KROK II" not in binary and "STEP II" not in binary, lang
         assert "KROK I" in binary or "STEP I" in binary, lang
         assert "KROK II" in full or "STEP II" in full, lang
+
+
+def test_real_guidelines_justification_paragraph_only_in_binary():
+    from build import render_guidelines
+    for lang, marker in (("sk", "Techniky sa nevyberajú zo zoznamu"), ("en", "Techniques are not selected from a list")):
+        raw = (Path(__file__).resolve().parent.parent
+               / "languages" / lang / "guidelines.html").read_text(encoding="utf-8")
+        binary = render_guidelines(raw, mode="binary")
+        full = render_guidelines(raw, mode="full")
+        assert marker in binary and marker not in full, lang
+        assert "{{" not in binary and "{{" not in full, lang

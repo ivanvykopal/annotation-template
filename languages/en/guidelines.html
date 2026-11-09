@@ -1,10 +1,13 @@
 <style>
-  h1 { margin: 0 0 24px; }
-  h2 { margin: 36px 0 14px; padding-top: 10px; border-top: 1px solid #e5e7eb; line-height: 1.35; }
-  h3 { margin: 22px 0 8px; }
-  p { margin: 8px 0 16px; line-height: 1.55; }
-  ul { margin: 6px 0 18px; padding-left: 22px; }
-  li { margin: 6px 0; line-height: 1.5; }
+.ls-guide, body { line-height: 1.7; }
+h1 { margin: 0 0 28px; }
+h2 { margin: 36px 0 16px; padding-bottom: 8px; border-bottom: 2px solid #ddd; }
+h3 { margin: 36px 0 14px; padding-bottom: 6px; border-bottom: 1px solid #e5e5e5; }
+h4 { margin: 32px 0 10px; padding: 8px 12px; background: #f3f4f6; border-left: 4px solid #6b7280; border-radius: 3px; }
+p { margin: 0 0 14px; line-height: 1.7; }
+ul { margin: 8px 0 18px; padding-left: 26px; }
+li { margin-bottom: 12px; line-height: 1.7; }
+li i:first-child { font-weight: 600; }
 </style>
 
 <h1>How to perform an article evaluation</h1>
@@ -20,15 +23,139 @@
 <li><b>Known author</b> — content signed with personal data, enabling a wider identification of the author (you can easily, for example, by clicking on the name, get more information about such a person).</li>
 </ul>
 {{/FULL}}
+{{#BINARY}}
+<h3>1.1 Content analysis (exhaustive list, single choice)</h3>
+{{/BINARY}}
+{{#FULL}}
 <h3>1.2 Content analysis (exhaustive list, single choice)</h3>
+{{/FULL}}
+{{#BINARY}}
+<p><b>Note:</b> This step requires analyzing the entire content of the article and recognizing whether the information is true, contains a false claim, or tries to manipulate the reader.</p>
+{{/BINARY}}
+{{#FULL}}
 <p><b>Note:</b> This step requires analyzing the entire content of the article and recognizing whether the information is true or of disinformative nature.</p>
+{{/FULL}}
 <ul>
 <li><b>Credible information</b> — article provides only factual information, presents verifiable content, cites the sources from which it gets information and uses neutral language. Selecting this category ends the assessment of the article.</li>
-<li><b>Disinformation</b> — all forms of false, inaccurate, or misleading information reproduced, regardless of the author's intentions. In most cases they are designed, presented, and promoted to intentionally cause public harm or for profit. The detected information must be verifiable, which means that it can be proved that it is untrue or manipulation techniques were used.</li>
+{{#BINARY}}
+<li><b>Disinformation</b> — all forms of false, inaccurate, or misleading information disseminated regardless of the author's intent. In most cases it is designed, presented, and promoted to intentionally cause public harm or for profit. The detected information must be verifiable, which means that it can be proved that it is untrue or that manipulation techniques were used.</li>
+{{/BINARY}}
+{{#FULL}}
+<li><b>Disinformation</b> — all forms of false, inaccurate, or misleading information designed, presented, and promoted to intentionally cause public harm or for profit. The author's intent is usually not stated and can only be presumed, so proving it is not required. The detected information must, however, be verifiable, which means that it can be proved that it is untrue or manipulation techniques were used.
+<p style="margin:10px 0 4px"><b>What falls under disinformation</b> (not only explicitly false claims; following the European Commission HLEG definition):</p>
+<ul>
+<li><b>Falseness/fabrication</b> — explicitly false claims, fabricated documents, data or quotes.</li>
+<li><b>Manipulation</b> — distorting facts even without an outright lie (cherry picking, quote mining, exaggeration, false cause, false references, appeal to emotion, etc.).</li>
+<li><b>Conspiracy theories</b> and <b>trolling/satire</b> — when they mislead or spread false content.</li>
+<li><b>Intent and impact</b> — the author's intent is usually only presumed; note the emotions, narratives and public harm (e.g., disrupting democratic processes, endangering health) the article may cause.</li>
+<li><b>Verifiability</b> — falseness or manipulation must be provable. If it cannot be proven (unproven theory, an opinion not meant to mislead), it is not disinformation – select <i>Hard to say</i>.</li>
+</ul>
+<p><b>After selecting this option</b> continue with Steps II–IV.</p>
+</li>
+{{/FULL}}
 <li><b>Hard to say</b> — content is not verifiable. Selecting this category ends the assessment of the article.</li>
 <li><b>Inconsistent with the topic</b> — the article is not relevant to the topic at hand or does not display properly. Selecting this category ends the assessment of the article.</li>
 </ul>
 <p><b>Note:</b> Selecting item 1, 3 or 4 ends the evaluation of the article. Therefore, read the article carefully and make sure that it meets the criteria for marking any of the categories listed above.</p>
+
+{{#BINARY}}
+<h3>1.2 Manipulation techniques (part of the <i>"disinformation"</i> category)</h3>
+<p>For manipulative content, note which techniques the author used. There may be several in one article. Techniques are not selected from a list – they serve as an aid in recognizing manipulation. Justify your assessment in the justification field: ideally give a quotation from the article in which the technique is used, and an explanation of which technique you think it is and why the article is manipulative.</p>
+
+<h4>1. Cherry Picking</h4>
+<p>Presenting only the data that support a thesis/narrative while ignoring the broader context. It concerns mainly data (most often statistics) taken out of context, as well as one-sided selection of arguments in which the author omits the positive or negative sides of the matter. Personal experience belongs under <i>Anecdote</i>, not Cherry Picking.</p>
+<ul>
+<li><i>Example 1:</i> “The data show that last winter was the coldest in the last 10 years, so the climate is not warming at all.” — A single data point taken out of context; the long-term trend (decades) clearly shows warming.</li>
+<li><i>Example 2:</i> “Stalin transformed the USSR into a strong state with developed industry, mechanized agriculture and education available to all. His influence on the development of Russia and the Soviet republics was exceptionally positive.” — The author completely omits the negative sides of Stalin's rule and thus substantially distorts historical truth.</li>
+</ul>
+<p><i>Annotation note:</i> in the justification quote at least one sentence using the technique; for example 2 several sentences need to be quoted.</p>
+
+<h4>2. Quote Mining</h4>
+<p>Using a short excerpt from someone else's longer speech in a way that significantly distorts its original tone or meaning.</p>
+<ul>
+<li><i>Example 1:</i> “It is as if the fossils were simply planted there, without any evolutionary history.” — An excerpt from R. Dawkins' book <i>The Blind Watchmaker</i> used by creationists as proof of their belief. In the original text, however, Dawkins criticizes creationists and rejects their hypothesis.</li>
+<li><i>Example 2:</i> “I hate Poles.” — A part of the sentence was cut out which completely reversed its meaning. The original sentence read: “I would never say that I hate Poles.”</li>
+</ul>
+<p><i>Annotation note:</i> usually one sentence is enough; sometimes the context requires several sentences.</p>
+
+<h4>3. Anecdote</h4>
+<p>Using a personal experience, an isolated case, or hearsay as evidence, most often to question statistics.</p>
+<ul>
+<li><i>Example 1:</i> “Exactly 25 cm of snow fell in Orava. Global warming is the biggest lie in the history of mankind.” — A single personal experience cannot be transferred to the whole population or to multi-year studies.</li>
+<li><i>Example 2:</i> “My uncle, who works in a hospital, said that many people died because of COVID-19 vaccines.” — The claim is unverifiable: it is impossible to find out whether the relative really said it, or whether he works in a relevant place and has knowledge of the matter.</li>
+</ul>
+<p><i>Annotation note:</i> usually one sentence is enough.</p>
+
+<h4>4. Whataboutism</h4>
+<p>Responding to a factual argument not by addressing it but by raising a new, unrelated issue. It may be a false trail to divert attention (<i>Red Herring</i>) or an appeal to hypocrisy (<i>Tu quoque</i> – “you too”): the opponent has something on their conscience as well, and therefore has no right to criticize.</p>
+<ul>
+<li><i>Example 1:</i> “You talk about the persecution of LGBT+ people. What about hungry children? Nobody thinks of them!” — The author shifts attention to another, usually ideologically neutral problem and thereby conceals their own bias.</li>
+<li><i>Example 2:</i> “What about all the Clintons' ties to Russia, including the Podesta firm, the uranium deal, the Russian “reset”, speaking fees, etc.?” — The accusation of ties to Russia is deflected by pointing out that the opponent has them too (Red Herring).</li>
+<li><i>Example 3:</i> “If NATO could bomb Serbia in 1999, Russia can bomb Ukraine in 2022.” — Tu quoque: accusing the other side of hypocrisy serves as a justification of one's own actions.</li>
+</ul>
+<p><i>Annotation note:</i> usually one or two sentences are enough.</p>
+
+<h4>5. Strawman</h4>
+<p>Distorting someone else's argument so that it is easier to refute. Usually this means attributing to the opponent a position they do not hold at all.</p>
+<ul>
+<li><i>Example 1:</i> “If you support LGBT, you also support pedophilia = zero respect, no tolerance.” — The author claims that supporting one thing means supporting another, universally condemned thing, and thus portrays the opponent in the worst light.</li>
+<li><i>Example 2:</i> “If you criticize Russia's actions, you are a Russophobe.” — Criticism is equated with prejudice, which makes it possible to portray oneself or someone else as a victim.</li>
+</ul>
+<p><i>Annotation note:</i> usually one sentence is enough.</p>
+
+<h4>6. Suggestive questions</h4>
+<p>Flooding the recipient with a series of leading questions that steer them towards a predetermined thesis. The author often appears neutral (“just asking questions”) while directing the reader's attitude (usually negatively).</p>
+<ul>
+<li><i>Example 1:</i> “I think we don't even know the real mortality of monkeypox. Has a Westerner ever died of it? Is it even the same disease as in Africa? If so, how could it appear in so many countries at once? (…) Doesn't this just make us need another dose?” — The questions lead to a certain conclusion; the author avoids the accusation of spreading conspiracies and can always defend themselves by saying they are “just asking”.</li>
+<li><i>Example 2:</i> “Is it a coincidence that the war in Ukraine broke out right when the pandemic ended? And that it immediately became the main media topic? Doesn't it mean that elites are trying to hide something with another big event to distract our attention?” — The questions have an obvious thesis and also aim to evoke negative emotions.</li>
+</ul>
+<p><i>Annotation note:</i> quote at least three suggestive questions. They need not follow one another or come from one part of the text, but they must clearly present a specific thesis.</p>
+
+<h4>7. Appeal to emotion</h4>
+<p>Using words and phrases meant to evoke a strong emotion and attitude in the recipient. Subtypes: <i>appeal to fear/prejudice</i>, <i>appeal to values and traditions</i>, <i>slogans</i> (short strong phrases with stereotypes or labeling), <i>emotionally loaded language</i> (insulting and hateful), <i>Flag Waving</i> (appeal to group membership) and <i>appeal to time</i> (a call to act now).</p>
+<ul>
+<li><i>Example 1 (emotionally loaded language):</i> “Our children are being MURDERED by vaccines! They are DEVILS who want to hurt the innocent! All doctors who vaccinate will face cruel punishment.” — The highlighted keywords evoke negative emotions and designate the culprits.</li>
+<li><i>Example 2 (appeal to fear and prejudice):</i> “If we let migrants into the country, they will rob us and we will be afraid to go out on the street.” — A simple, frightening and oversimplified vision based on social prejudices.</li>
+<li><i>Example 3 (appeal to values):</i> “Women have always taken care of the household and children, not a career. If our ancestors did it, there is no point in changing it.” — An appeal to tradition; often accompanied by phrases such as “everybody thinks so” or “nobody disagrees”.</li>
+<li><i>Example 4 (slogan):</i> “Slovakia first! We will give nothing to anyone!” — A short catchy slogan referring to prejudices that is hard to challenge.</li>
+<li><i>Example 5 (emotionally loaded language / hate speech):</i> “Every gay person is a pedophile, so they must be registered and kept in separate camps.” — Arguments based on hatred and radical prejudices, often amounting to hate speech.</li>
+<li><i>Example 6 (flag waving):</i> “We who fight against Big Pharma know very well that vaccines are dangerous, and we do not need studies by corrupt scientists for that, because every reasonable person can see it.” — The author assumes the audience shares their views and is content to point to group membership.</li>
+<li><i>Example 7 (appeal to time):</i> “The time has come to take to the streets and stand up to the rainbow dictatorship.” — Mobilizing the audience to act without factual arguments.</li>
+</ul>
+<p><i>Annotation note:</i> usually one sentence is enough.</p>
+
+<h4>8. False cause</h4>
+<p>Assuming a causal relationship solely on the basis of an observed correlation. This includes assuming that two simultaneous events are related (<i>Cum hoc ergo propter hoc</i>), or that an event following another is its consequence (<i>Post hoc ergo propter hoc</i>).</p>
+<ul>
+<li><i>Example 1:</i> “Russia's military intervention in Ukraine is the culmination of US and NATO aggression that began with their blitzkrieg against Serbia 23 years ago.” — A marked oversimplification: the author picks a convenient cause and omits everything else.</li>
+<li><i>Example 2 (Cum hoc):</i> “We started vaccinating against COVID-19 and that is exactly when a new wave of illness began. It looks like vaccines infect more effectively than the virus itself.” — The simultaneous occurrence of two events does not mean that one causes the other.</li>
+<li><i>Example 3 (Post hoc):</i> “A new government was elected a month ago and we already have an economic collapse.” — Causality is assumed merely from temporal sequence; many phenomena have several complex causes that accumulate over months or years.</li>
+</ul>
+<p><i>Annotation note:</i> usually one sentence is enough.</p>
+
+<h4>9. Exaggeration</h4>
+<p>Simplifying and distorting a phenomenon or problem. Subtypes: <i>Slippery Slope</i> (one decision leads to a chain of undesirable consequences), <i>Blowfish</i> (inflating marginal aspects or the views of individuals to smear a whole group), <i>Magnified Minority</i> (overestimating the importance of a small group with a different opinion) and <i>Oversimplification</i>.</p>
+<ul>
+<li><i>Example 1 (Blowfish):</i> “I just read an article about one of the LGBT+ activists being a pedophile. That is perfect proof that the whole community wants to harm children!” — An isolated case is used to smear the whole community.</li>
+<li><i>Example 2 (Slippery Slope):</i> “If we allow same-sex marriage, the next step will be the legalization of pedophilia.” — Falsely portrayed consequences of a decision meant to evoke fear or aversion.</li>
+<li><i>Example 3 (Magnified Minority):</i> “This scientist claims that global warming is a lie. They expelled him from the community for telling the truth.” — The opinion of a narrow group is used to blur the real picture of the community.</li>
+<li><i>Example 4 (Oversimplification):</i> “Roma commit more crimes, which means they are by nature more prone to violence.” — The author maximally simplifies a complex phenomenon to confirm their prejudices and ignores the many influencing factors.</li>
+</ul>
+<p><i>Annotation note:</i> usually one sentence is enough.</p>
+
+<h4>10. False reference</h4>
+<p>Referring to unreliable sources or persons: passing on knowledge from anonymous people (e.g., from social media), citing propaganda claims of politicians or media (especially from authoritarian states), or using false quotes circulating on the internet. False experts or other people posing as an authority are often used (<i>Appeal to Authority</i>).</p>
+<ul>
+<li><i>Example 1:</i> “User @Xbv3321 analyzed the studies that were supposed to “prove” the effectiveness of COVID-19 vaccines. He clearly proved that they are a lie and that Big Pharma is deceiving people.” — An appeal to an anonymous authority whose competence cannot be assessed.</li>
+<li><i>Example 2:</i> “Vladimir Putin said that Western sanctions against Russia do not work and the economy is only growing. Putin is again proving what a good president he is, and the West has shown its weakness.” — A politician's propaganda claims are treated as a reliable source.</li>
+<li><i>Example 3:</i> “Dostoevsky already knew that neo-Marxism would destroy us: “Tolerance will reach such a level that intelligent people will be forbidden to think so as not to offend the fools.” That is exactly how woke and cancel culture are trying to destroy traditional values.” — A false quote that Dostoevsky never said; the author exploits the authority of a famous person.</li>
+<li><i>Example 4 (Appeal to Authority):</i> “Former Pfizer vice president Michael Yeadon warns that pharmaceutical companies are lying! He said that vaccines have not been properly tested and are extremely dangerous.” — A person posing as an expert lends credibility to the spread claims, although they are a marginal member of the community, often excluded from scientific institutions.</li>
+</ul>
+<p><i>Annotation note:</i> usually one or two sentences are enough.</p>
+
+<h4>Manipulation outside the listed techniques</h4>
+<p>If you think you have found manipulation that cannot be assigned to any of the listed techniques, describe it in the assessment justification field: give a quotation from the analyzed text and briefly explain why you think it is manipulation.</p>
+{{/BINARY}}
 
 {{#FULL}}
 <h2>STEP II – A detailed analysis of the content</h2>
@@ -37,7 +164,7 @@
 <ul>
 <li><b>Falseness/fabrication</b> — all explicitly false content and articles containing fabricated documents/data/quotes and the like. Articles classified in this group require a fact-checking comment. The analyst's task is to identify explicitly false or fabricated content, and then to find arguments/sources refuting the false statement. Selecting this option allows you to quote a false statement in the text box. The second text box requires a link to an article providing evidence refuting the quoted statement (in particular scientific sources and articles from reliable organizations dealing with disinformation study).</li>
 </ul>
-<p><b>Note:</b> For help in finding verified disinformation claims, it is best to first go to Google Fact Check Tools. If you are unable to find a fact-checking article, simply post an article that contains credible data that can be used to refute those used in the disinformation article.</p>
+<p><b>Note:</b> For help in finding verified disinformation claims, it is best to first go to our developed tool: Fact-check finder or Google Fact Check Tools. If you are unable to find a fact-checking article, simply post an article that contains credible data that can be used to refute those used in the disinformation article. When citing independent NGOs, pay special attention to whether the organization is affiliated with the International Fact-Checking Network (IFCN). Both text boxes (the quoted false statement and the refuting link) are required.</p>
 <ul>
 <li><b>Manipulation</b> — bending or distorting facts in order to prove one's point or to influence someone else's views and behavior. Manipulative articles are often not explicitly false, but they contain incomplete statements, used in an inappropriate context, selected information, etc. Try to identify all manipulation techniques in the article. Of course, an article may also cover just one technique. Examples of manipulation techniques can be found in the <i>Manipulation techniques - examples and definitions</i> document.</li>
 <li><b>Trolling/satire</b> — posting controversial, often untrue content, showing certain phenomena in a caricatured, playful manner. Disinformation articles, including trolling/satire, can be based on both falseness and manipulation. After selecting this option, an analysis adequate to the type of disinformation should be carried out: <i>falseness/fabrication</i>, <i>manipulation</i>, or both.</li>

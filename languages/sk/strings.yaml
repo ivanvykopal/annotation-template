@@ -3,13 +3,13 @@
 # {{target}} is a build-injected variable (web/text), not a key in this file.
 
 # --- Panel headers / step titles ---
-title_clanok: "📰 Hodnotený článok"
 title_celkove_hodnotenie: "Celkové hodnotenie"
 title_krok_2: "Krok 2 z 4 · Podrobná analýza obsahu"
 title_krok_3: "Krok 3 z 4 · Motivácia a zámery"
 title_krok_4: "Krok 4 z 4 · Naratívy"
 title_fakt_checking: "🔎 Fakt-checking"
 title_manipulativne_techniky: "🎭 Použité manipulatívne techniky"
+title_dez_dovod: "🔎 Zdôvodnenie dezinformácie"
 
 # --- Intro ---
 intro_text: "Postup: 1) Prečítajte si celý článok vľavo. 2) Vyplňte otázky zhora nadol. Ďalšie kroky sa zobrazia automaticky podľa vašich odpovedí. Po podržaní myši nad možnosťou sa zobrazí jej vysvetlenie. Podrobné pokyny nájdete v Inštrukciách."
@@ -33,6 +33,9 @@ q_3_2_required: "Vyberte aspoň jeden zámer."
 q_3_3_required: "Vyberte aspoň jednu emóciu."
 q_3_4_required: "Vyberte tému."
 q_narativy_required: "Vyberte aspoň jeden naratív zvolenej témy."
+q_dez_dovod_required: "Uveďte zdôvodnenie, prečo je článok dezinformácia (nepravdivosť, manipulácia alebo iný dôvod)."
+q_neprave_tvrdenie_required: "Ocitujte nepravdivé tvrdenie z článku."
+q_vyvracajuci_zdroj_required: "Uveďte odkaz na zdroj, ktorý tvrdenie vyvracia."
 
 # --- Help texts ---
 help_autor: "Hodnotenie autora neovplyvňuje posúdenie obsahu článku."
@@ -41,11 +44,21 @@ help_fakt_checking: "Ocitujte nepravdivé tvrdenie a uveďte zdroj, ktorý ho vy
 help_manipulacne_techniky: "Označte všetky techniky, ktoré článok používa (pozri dokument „Manipulačné techniky – príklady a definície“)."
 help_emocie: "Vcíťte sa do človeka, ktorý dezinformácii verí. Čo by pri čítaní cítil? Môžete vybrať viac možností."
 help_narativy: "Ako autor dezinformáciu podáva? Naratívy sa zobrazia po výbere témy v bode 3.4. Môžete vybrať viac možností."
+help_dez_dovod: "Stačí uviesť jeden dôvod, prečo je článok dezinformácia; ak stojí za zmienku viac vecí, uveďte ich všetky. Možné dôvody: nepravdivé tvrdenie a zdroj, ktorý ho vyvracia; manipulácia (ktorá technika a kde – cherry picking, vytrhnutý citát, zveličovanie, chybná referencia a pod.); konšpiračná teória alebo zavádzajúca satira; zavádzajúci kontext, nepodložené alebo neoveriteľné zdroje; pôsobenie na emócie čitateľa a možná verejná ujma. Ocitujte konkrétne miesta z článku. Pole sa použije pri konsenze medzi anotátormi."
 
 # --- Notes ---
-note_obsah: "⚠ Vyžaduje prečítanie celého článku. Výberom ľubovoľnej možnosti sa hodnotenie ukončí."
+note_obsah_full: "⚠ Vyžaduje prečítanie celého článku. „Dezinformácia“ pokračuje ďalšími krokmi, ostatné možnosti hodnotenie ukončia."
+note_obsah_binary: "⚠ Vyžaduje prečítanie celého článku. „Dezinformácia“ vyžaduje zdôvodnenie, ostatné možnosti hodnotenie ukončia."
 note_typ: "⚠ „Konšpiračná teória“ sa nekombinuje s „Nepravdivosť/fabrikácia“ ani s „Manipulácia“."
 note_mot: "⚠ „Komplex vyvoleného/spasiteľa“ nemôže byť jedinou motiváciou – vyberte aj hlavnú motiváciu."
+def_title: "ℹ Čo považujeme za dezinformáciu?"
+def_intro: "Dezinformácia nie sú len explicitne nepravdivé tvrdenia. Je to akýkoľvek nepravdivý, nepresný alebo zavádzajúci obsah, ktorý je vytvorený, podaný a šírený s cieľom klamať alebo získať zisk a môže spôsobiť verejnú ujmu."
+def_1: "• Nepravdivosť/fabrikácia – výslovne nepravdivé tvrdenia, sfalšované dokumenty, údaje alebo citáty."
+def_2: "• Manipulácia – skresľovanie faktov aj bez explicitnej lži: cherry picking, vytrhnuté citáty, zveličovanie, falošná príčina, chybné referencie, apel na emócie a pod."
+def_3: "• Konšpiračné teórie – alternatívne vysvetlenie udalosti o skupine, ktorá skrýva pravdu."
+def_4: "• Trolling/satira – karikatúrny, často nepravdivý obsah, ktorý môže zavádzať."
+def_5: "• Zámer a dopad – zámer autora sa zvyčajne len predpokladá; posudzujte aj to, aké emócie, naratívy a ujmu článok môže spôsobiť."
+def_6: "• Musí byť overiteľné: ak nepravdivosť ani manipuláciu nemožno preukázať (nepotvrdená teória, názor), zvoľte „Ťažko povedať“."
 note_tema: "⚠ Zvoľte rovnakú tému, aká je článku priradená vo vašom zozname. Podľa nej sa v kroku 4 zobrazia naratívy."
 
 # --- Placeholders ---
@@ -53,6 +66,7 @@ ph_autor_meno_neznamy: "Meno autora (ak je uvedené v článku)"
 ph_autor_meno_znamy: "Meno autora"
 ph_neprave_tvrdenie: "Nepravdivé tvrdenie z článku…"
 ph_vyvracajuci_zdroj: "Odkaz (URL) na zdroj, ktorý tvrdenie vyvracia…"
+ph_dez_dovod: "Napr.: Článok tvrdí, že „vakcíny obsahujú mikročipy“ (vyvracia [zdroj]); zároveň vytŕha citát lekára z kontextu (quote mining) a vyvoláva strach."
 
 # --- Completion banners ---
 done_kompletne: "✅ Hodnotenie je kompletné. Skontrolujte odpovede a kliknite na „Odoslať“ (Submit)."

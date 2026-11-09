@@ -1,10 +1,13 @@
 <style>
-  h1 { margin: 0 0 24px; }
-  h2 { margin: 36px 0 14px; padding-top: 10px; border-top: 1px solid #e5e7eb; line-height: 1.35; }
-  h3 { margin: 22px 0 8px; }
-  p { margin: 8px 0 16px; line-height: 1.55; }
-  ul { margin: 6px 0 18px; padding-left: 22px; }
-  li { margin: 6px 0; line-height: 1.5; }
+.ls-guide, body { line-height: 1.7; }
+h1 { margin: 0 0 28px; }
+h2 { margin: 36px 0 16px; padding-bottom: 8px; border-bottom: 2px solid #ddd; }
+h3 { margin: 36px 0 14px; padding-bottom: 6px; border-bottom: 1px solid #e5e5e5; }
+h4 { margin: 32px 0 10px; padding: 8px 12px; background: #f3f4f6; border-left: 4px solid #6b7280; border-radius: 3px; }
+p { margin: 0 0 14px; line-height: 1.7; }
+ul { margin: 8px 0 18px; padding-left: 26px; }
+li { margin-bottom: 12px; line-height: 1.7; }
+li i:first-child { font-weight: 600; }
 </style>
 
 <h1>Ako vyhodnocovať článok</h1>
@@ -20,15 +23,139 @@
 <li><b>Známy autor</b> — obsah podpísaný osobnými údajmi, ktoré umožňujú širšiu identifikáciu autora (o takejto osobe možno ľahko získať ďalšie informácie, napríklad kliknutím na meno).</li>
 </ul>
 {{/FULL}}
+{{#BINARY}}
+<h3>1.1 Analýza obsahu (uzavretý zoznam, jediná voľba)</h3>
+{{/BINARY}}
+{{#FULL}}
 <h3>1.2 Analýza obsahu (uzavretý zoznam, jediná voľba)</h3>
+{{/FULL}}
+{{#BINARY}}
+<p><b>Poznámka:</b> Tento krok vyžaduje analýzu celého obsahu článku a rozpoznanie, či je informácia pravdivá, obsahuje falošné tvrdenie alebo sa snaží manipulovať čitateľa.</p>
+{{/BINARY}}
+{{#FULL}}
 <p><b>Poznámka:</b> Tento krok vyžaduje analýzu celého obsahu článku a rozpoznanie, či je informácia pravdivá alebo dezinformuje.</p>
+{{/FULL}}
 <ul>
 <li><b>Dôveryhodná informácia</b> — článok prináša len vecné informácie, prezentuje overiteľný obsah, cituje zdroje, z ktorých čerpá informácie, a používa neutrálny jazyk. Výber tejto kategórie ukončuje hodnotenie článku.</li>
-<li><b>Dezinformácia</b> — všetky formy nepravdivých, nepresných alebo zavádzajúcich informácií šírených bez ohľadu na zámer autora. Vo väčšine prípadov sú navrhnuté, prezentované a propagované s cieľom zámerne spôsobiť verejnú ujmu alebo dosiahnuť zisk. Zistená informácia musí byť overiteľná, to znamená, že možno preukázať, že je nepravdivá alebo boli použité manipulatívne techniky.</li>
+{{#BINARY}}
+<li><b>Dezinformácia</b> — všetky formy nepravdivých, nepresných alebo zavádzajúcich informácií šírených bez ohľadu na zámer autora. Vo väčšine prípadov sú navrhnuté, prezentované a propagované s cieľom zámerne spôsobiť verejnú ujmu alebo dosiahnuť zisk. Nájdená informácia musí byť overiteľná, to znamená, že možno preukázať, že je nepravdivá alebo boli použité manipulatívne techniky.</li>
+{{/BINARY}}
+{{#FULL}}
+<li><b>Dezinformácia</b> — všetky formy nepravdivých, nepresných alebo zavádzajúcich informácií navrhnutých, prezentovaných a propagovaných s cieľom zámerne spôsobiť verejnú ujmu alebo dosiahnuť zisk. Zámer autora zvyčajne nie je uvedený a dá sa len predpokladať, preto sa jeho dôkaz nevyžaduje. Zistená informácia však musí byť overiteľná, to znamená, že možno preukázať, že je nepravdivá alebo boli použité manipulatívne techniky.
+<p style="margin:10px 0 4px"><b>Čo patrí pod dezinformáciu</b> (nie sú to len explicitne nepravdivé tvrdenia; podľa definície Európskej komisie – HLEG):</p>
+<ul>
+<li><b>Nepravdivosť/fabrikácia</b> — explicitne nepravdivé tvrdenia, sfalšované dokumenty, údaje alebo citáty.</li>
+<li><b>Manipulácia</b> — skresľovanie faktov aj bez explicitnej lži (cherry picking, vytrhnuté citáty, zveličovanie, falošná príčina, chybné referencie, apel na emócie a pod.).</li>
+<li><b>Konšpiračné teórie</b> a <b>trolling/satira</b> — ak zavádzajú alebo šíria nepravdivý obsah.</li>
+<li><b>Zámer a dopad</b> — zámer autora sa zvyčajne len predpokladá; všímajte si, aké emócie, naratívy a verejnú ujmu (napr. narúšanie demokratických procesov, ohrozenie zdravia) článok môže spôsobiť.</li>
+<li><b>Overiteľnosť</b> — nepravdivosť alebo manipuláciu musí byť možné preukázať. Ak ju preukázať nemožno (nepotvrdená teória, názor, ktorý nemá zavádzať), nejde o dezinformáciu – zvoľte <i>Ťažko povedať</i>.</li>
+</ul>
+<p><b>Po výbere tejto možnosti</b> pokračujte krokmi II–IV.</p>
+</li>
+{{/FULL}}
 <li><b>Ťažko povedať</b> — obsah nie je možné overiť. Výber tejto kategórie ukončuje hodnotenie článku.</li>
 <li><b>Nezhodné s témou</b> — článok nesúvisí s danou témou alebo sa nezobrazuje správne. Výber tejto kategórie ukončuje hodnotenie článku.</li>
 </ul>
 <p><b>Poznámka:</b> Zvolenie položky 1, 3 alebo 4 ukončuje hodnotenie článku. Preto si článok pozorne prečítajte a uistite sa, že spĺňa kritériá na označenie niektorej z vyššie uvedených kategórií.</p>
+
+{{#BINARY}}
+<h3>1.2 Manipulatívne techniky (súčasť kategórie <i>"dezinformácia"</i>)</h3>
+<p>Pri manipulatívnom obsahu si všímajte, ktoré techniky autor použil. V jednom článku ich može byť viac. Techniky sa nevyberajú zo zoznamu – slúžia ako pomôcka pri rozpoznávaní manipulácie. Svoje hodnotenie zdôvodnite v poli s odôvodnením: najlepšie je uviesť citáciu z článku, v ktorej sa technika použila, a vysvetlenie, o akú techniku podľa vás ide a prečo je článok manipulatívny.</p>
+
+<h4>1. Cherry Picking (výberové poukazovanie na fakty)</h4>
+<p>Prezentovanie len tých údajov, ktoré podporujú tézu/naratív, pri ignorovaní širšieho kontextu. Týka sa najmä údajov (najčastejšie štatistických) vytrhnutých z kontextu, ako aj jednostranného výberu argumentov, pri ktorom autor vynecháva pozitívne alebo negatívne stránky veci. Osobné skúsenosti patria pod <i>Anegdotu</i>, nie pod Cherry Picking.</p>
+<ul>
+<li><i>Príklad 1:</i> „Údaje ukazujú, že minulá zima bola najchladnejšia za posledných 10 rokov, takže sa klíma vôbec neotepľuje.“ — Jediný údaj vytrhnutý z kontextu; dlhodobý trend (desaťročia) jasne ukazuje otepľovanie.</li>
+<li><i>Príklad 2:</i> „Stalin premenil ZSSR na silný štát s rozvinutým priemyslom, mechanizovaným poľnohospodárstvom a vzdelaním dostupným pre všetkých. Jeho vplyv na rozvoj Ruska a sovietskych republík bol mimoriadne pozitívny.“ — Autor úplne vynecháva negatívne stránky Stalinovej vlády a podstatne tak skresľuje historickú pravdu.</li>
+</ul>
+<p><i>Poznámka k anotácii:</i> v odôvodnení citujte aspoň jednu vetu s použitím techniky; pri príklade 2 bude potrebné citovať viac viet.</p>
+
+<h4>2. Quote Mining (vytrhávanie citátov)</h4>
+<p>Použitie krátkeho úryvku z dlhšieho prejavu niekoho iného tak, že sa výrazne skreslí jeho pôvodný tón alebo zmysel.</p>
+<ul>
+<li><i>Príklad 1:</i> „Je to, akoby tam boli fosílie jednoducho podhodené, bez akejkoľvek evolučnej histórie.“ — Úryvok z knihy R. Dawkinsa <i>Slepý hodinár</i> používajú kreacionisti ako dôkaz svojho presvedčenia. V pôvodnom texte však Dawkins kreacionistov kritizuje a ich hypotézu odmieta.</li>
+<li><i>Príklad 2:</i> „Nenávidím Poliakov.“ — Z vety bola vystrihnutá časť, ktorá úplne obrátila jej zmysel. Pôvodná veta znela: „Nikdy by som nepovedal, že nenávidím Poliakov.“</li>
+</ul>
+<p><i>Poznámka k anotácii:</i> zvyčajne stačí citovať jednu vetu, niekedy si kontext vyžiada viac viet.</p>
+
+<h4>3. Anegdota</h4>
+<p>Použitie osobnej skúsenosti, ojedinelého prípadu, prípadne chýru či počutia z počutia ako dôkazu, najčastejšie na spochybnenie štatistík.</p>
+<ul>
+<li><i>Príklad 1:</i> „Na Orave napadlo práve 25 cm snehu. Globálne otepľovanie je najväčšia lož v dejinách ľudstva.“ — Jednotlivá osobná skúsenosť nemožno prenášať na celú populáciu ani na viacročné štúdie.</li>
+<li><i>Príklad 2:</i> „Môj strýko, ktorý pracuje v nemocnici, povedal, že veľa ľudí zomrelo kvôli vakcínam proti COVID-19.“ — Tvrdenie je neoveriteľné: nemožno zistiť, či to príbuzný naozaj povedal, ani či pracuje na relevantnom mieste a má o veci znalosti.</li>
+</ul>
+<p><i>Poznámka k anotácii:</i> zvyčajne stačí citovať jednu vetu.</p>
+
+<h4>4. Whataboutism</h4>
+<p>Reakcia na vecný argument nie jeho riešením, ale nastolením novej, s témou nesúvisiacej otázky. Môže ísť o falošnú stopu na odvedenie pozornosti (<i>Red Herring</i>) alebo o odvolanie sa na pokrytectvo (<i>Tu quoque</i> – „ty tiež“): oponent má tiež niečo na svedomí, a preto nemá právo kritizovať.</p>
+<ul>
+<li><i>Príklad 1:</i> „Hovoríte o prenasledovaní LGBT+ ľudí. A čo hladné deti? Na tie nikto nemyslí!“ — Autor presúva pozornosť na iný, zvyčajne svetonázorovo neutrálny problém a zakrýva tak vlastnú predpojatosť.</li>
+<li><i>Príklad 2:</i> „A čo všetky väzby Clintonovcov na Rusko, vrátane firmy Podesta, dohody o uráne, ruského „resetu“, honorárov za prejavy atď.?“ — Obvinenie z väzieb na Rusko sa odráža poukázaním na to, že ich má aj oponent (Red Herring).</li>
+<li><i>Príklad 3:</i> „Keď NATO v roku 1999 bombardovalo Srbsko, môže Rusko v roku 2022 bombardovať Ukrajinu.“ — Tu quoque: obvinenie druhej strany z pokrytectva slúži ako ospravedlnenie vlastného konania.</li>
+</ul>
+<p><i>Poznámka k anotácii:</i> zvyčajne stačí citovať jednu alebo dve vety.</p>
+
+<h4>5. Strawman (slamený panák)</h4>
+<p>Skreslenie argumentu niekoho iného tak, aby sa ľahšie vyvracal. Zvyčajne ide o pripísanie oponentovi postoja, ktorý vôbec nezastáva.</p>
+<ul>
+<li><i>Príklad 1:</i> „Ak podporuješ LGBT, podporuješ aj pedofíliu = nulový rešpekt, žiadna tolerancia.“ — Autor tvrdí, že podpora jednej veci znamená podporu inej, všeobecne odsudzovanej, a oponenta tak vykresľuje v najhoršom svetle.</li>
+<li><i>Príklad 2:</i> „Keď kritizuješ konanie Ruska, si rusofób.“ — Kritika sa stotožňuje s predsudkom, čo umožňuje vykresliť seba alebo niekoho iného ako obeť.</li>
+</ul>
+<p><i>Poznámka k anotácii:</i> zvyčajne stačí citovať jednu vetu.</p>
+
+<h4>6. Sugestívne otázky</h4>
+<p>Zahltenie príjemcu radom sugestívnych otázok, ktoré ho vedú k vopred stanovenej téze. Autor sa často tvári neutrálne („len sa pýtam“), pričom postoj čitateľa smeruje (zvyčajne negatívne).</p>
+<ul>
+<li><i>Príklad 1:</i> „Myslím, že ani nepoznáme skutočnú úmrtnosť na opičie kiahne. Zomrel na ne niekedy Západniar? Je to vôbec tá istá choroba ako v Afrike? Ak áno, ako sa mohla objaviť naraz v toľkých krajinách? (…) Nemá nás to len prinútiť k ďalšej dávke?“ — Otázky vedú k určitému záveru; autor sa vyhýba obvineniu zo šírenia konšpirácií a vždy sa môže brániť, že sa „len pýta“.</li>
+<li><i>Príklad 2:</i> „Je náhoda, že vojna na Ukrajine vypukla práve vtedy, keď sa skončila pandémia? A že sa hneď stala hlavnou témou médií? Neznamená to, že elity sa snažia niečo skryť ďalšou veľkou udalosťou, aby odviedli našu pozornosť?“ — Otázky majú zjavnú tézu a ich cieľom je aj vyvolať negatívne emócie.</li>
+</ul>
+<p><i>Poznámka k anotácii:</i> citujte aspoň tri sugestívne otázky. Nemusia nasledovať za sebou ani byť z jednej časti textu, musia však jasne predkladať konkrétnu tézu.</p>
+
+<h4>7. Apel na emócie</h4>
+<p>Použitie slov a fráz, ktoré majú v príjemcovi vyvolať silnú emóciu a postoj. Podtypy: <i>apel na strach/predsudky</i>, <i>apel na hodnoty a tradície</i>, <i>slogany</i> (krátke silné frázy so stereotypmi či nálepkovaním), <i>emocionálne nabitý jazyk</i> (urážlivý a nenávistný), <i>mávanie vlajkou</i> (Flag Waving – apel na príslušnosť k skupine) a <i>apel na čas</i> (výzva konať teraz).</p>
+<ul>
+<li><i>Príklad 1 (emocionálne nabitý jazyk):</i> „Naše deti VRAŽDIA vakcínami! Sú to DIABLI, ktorí chcú ublížiť nevinným! Všetkých lekárov, ktorí očkujú, čaká kruté potrestanie.“ — Zvýraznené kľúčové slová vyvolávajú negatívne emócie a označujú vinníkov.</li>
+<li><i>Príklad 2 (apel na strach a predsudky):</i> „Ak pustíme do krajiny migrantov, budú nás okrádať a my sa budeme báť vyjsť na ulicu.“ — Jednoduchá, strašidelná a zjednodušená vízia založená na spoločenských predsudkoch.</li>
+<li><i>Príklad 3 (apel na hodnoty):</i> „Ženy sa odjakživa starali o domácnosť a deti, nie o kariéru. Keď to robili naši predkovia, nemá zmysel to meniť.“ — Odvolanie sa na tradíciu; často sprevádzané frázami „všetci si to myslia“ či „nikto s tým nesúhlasí“.</li>
+<li><i>Príklad 4 (slogan):</i> „Slovensko na prvom mieste! Nikomu nič nedáme!“ — Krátke chytľavé heslo s odkazom na predsudky, ktoré sa ťažko spochybňuje.</li>
+<li><i>Príklad 5 (emocionálne nabitý jazyk / nenávistné prejavy):</i> „Každý gej je pedofil, preto ich treba registrovať a držať v osobitných táboroch.“ — Argumenty založené na nenávisti a radikálnych predsudkoch, často s charakterom hate speech.</li>
+<li><i>Príklad 6 (mávanie vlajkou):</i> „My, ktorí bojujeme proti Big Pharme, veľmi dobre vieme, že vakcíny sú nebezpečné, a nepotrebujeme na to štúdie skorumpovaných vedcov, lebo to vidí každý rozumný človek.“ — Autor predpokladá, že publikum jeho názory zdieľa, a stačí mu poukázať na príslušnosť k skupine.</li>
+<li><i>Príklad 7 (apel na čas):</i> „Nastal čas vyjsť do ulíc a postaviť sa dúhovej diktatúre.“ — Mobilizácia publika na akciu bez vecných argumentov.</li>
+</ul>
+<p><i>Poznámka k anotácii:</i> zvyčajne stačí citovať jednu vetu.</p>
+
+<h4>8. Falošná príčina</h4>
+<p>Predpoklad príčinnej súvislosti výlučne na základe pozorovanej korelácie. Patrí sem predpoklad, že dve súčasné udalosti spolu súvisia (<i>Cum hoc ergo propter hoc</i>), alebo že udalosť, ktorá nasleduje po inej, je jej dôsledkom (<i>Post hoc ergo propter hoc</i>).</p>
+<ul>
+<li><i>Príklad 1:</i> „Vojenský zásah Ruska na Ukrajine je vyvrcholením agresie USA a NATO, ktorá sa začala ich blitzkriegom proti Srbsku pred 23 rokmi.“ — Výrazné zjednodušenie: autor si vyberie výhodnú príčinu a vynechá všetko ostatné.</li>
+<li><i>Príklad 2 (Cum hoc):</i> „Začali sme očkovať proti COVID-19 a práve vtedy sa začala nová vlna ochorení. Vyzerá to, že vakcíny nakazia účinnejšie ako samotný vírus.“ — Súčasný výskyt dvoch udalostí neznamená, že jedna je príčinou druhej.</li>
+<li><i>Príklad 3 (Post hoc):</i> „Pred mesiacom sa zvolila nová vláda a už máme hospodársky kolaps.“ — Príčinná súvislosť sa predpokladá len z časovej následnosti; mnohé javy majú viacero zložitých príčin, ktoré sa hromadia mesiace či roky.</li>
+</ul>
+<p><i>Poznámka k anotácii:</i> zvyčajne stačí citovať jednu vetu.</p>
+
+<h4>9. Zveličovanie</h4>
+<p>Zjednodušenie a skreslenie javu alebo problému. Podtypy: <i>Slippery Slope</i> (jedno rozhodnutie vedie k reťazcu neželaných následkov), <i>nafúknutie</i> (Blowfish – zveličovanie okrajových aspektov alebo postojov jednotlivcov na očierňovanie celej skupiny), <i>zväčšená menšina</i> (Magnified Minority – preceňovanie významu malej skupiny s odlišným názorom) a <i>nadmerné zjednodušenie</i> (Oversimplification).</p>
+<ul>
+<li><i>Príklad 1 (Blowfish):</i> „Práve som čítal článok o tom, že jeden z LGBT+ aktivistov je pedofil. To je dokonalý dôkaz, že celá komunita chce ubližovať deťom!“ — Ojedinelý prípad sa používa na očierňovanie celej komunity.</li>
+<li><i>Príklad 2 (Slippery Slope):</i> „Ak povolíme manželstvá osôb rovnakého pohlavia, ďalším krokom bude legalizácia pedofílie.“ — Falošne zobrazené následky rozhodnutia s cieľom vyvolať strach či odpor.</li>
+<li><i>Príklad 3 (Magnified Minority):</i> „Tento vedec tvrdí, že globálne otepľovanie je lož. Za pravdu ho vylúčili z komunity.“ — Názor úzkej skupiny sa využíva na rozmazanie skutočného obrazu komunity.</li>
+<li><i>Príklad 4 (Oversimplification):</i> „Rómovia páchajú viac trestných činov, čo znamená, že sú od prírody náchylnejší na násilie.“ — Autor maximálne zjednodušuje zložitý jav, aby potvrdil svoje predsudky, a ignoruje množstvo ovplyvňujúcich faktorov.</li>
+</ul>
+<p><i>Poznámka k anotácii:</i> zvyčajne stačí citovať jednu vetu.</p>
+
+<h4>10. Chybná referencia</h4>
+<p>Odkaz na nespoľahlivé zdroje alebo osoby: odovzdávanie poznatkov od anonymných osôb (napr. zo sociálnych sietí), citovanie propagandistických tvrdení politikov či médií (najmä z autoritárskych štátov) alebo používanie nepravdivých citátov kolujúcich na internete. Často sa využívajú falošní experti či iné osoby vydávajúce sa za autoritu (<i>Appeal to Authority</i>).</p>
+<ul>
+<li><i>Príklad 1:</i> „Používateľ @Xbv3321 analyzoval štúdie, ktoré mali „dokazovať“ účinnosť vakcín proti COVID-19. Jednoznačne dokázal, že sú lož a Big Pharma klame ľudí.“ — Odvolanie sa na anonymnú autoritu, ktorej kompetenciu nemožno posúdiť.</li>
+<li><i>Príklad 2:</i> „Vladimir Putin povedal, že západné sankcie proti Rusku nefungujú a ekonomika len rastie. Putin opäť dokazuje, aký je dobrý prezident, a Západ ukázal svoju slabosť.“ — Propagandistické tvrdenia politika sa považujú za spoľahlivý zdroj.</li>
+<li><i>Príklad 3:</i> „Dostojevskij už vedel, že neomarxizmus nás zničí: „Tolerancia dosiahne takú úroveň, že inteligentným ľuďom sa zakáže myslieť, aby sa nepohoršili hlupáci.“ Presne tak sa to snaží zničiť tradičné hodnoty woke a cancel culture.“ — Falošný citát, ktorý Dostojevskij nikdy nepovedal; autor využíva autoritu známej osobnosti.</li>
+<li><i>Príklad 4 (Appeal to Authority):</i> „Bývalý viceprezident Pfizeru Michael Yeadon upozorňuje, že farmaceutické firmy klamú! Povedal, že vakcíny neprešli riadnym testovaním a sú mimoriadne nebezpečné.“ — Osoba pôsobiaca ako expert dodáva dôveryhodnosť šíreným tvrdeniam, hoci ide o okrajového člena komunity, často vylúčeného z vedeckých inštitúcií.</li>
+</ul>
+<p><i>Poznámka k anotácii:</i> zvyčajne stačí citovať jednu alebo dve vety.</p>
+
+<h4>Manipulácia mimo uvedených techník</h4>
+<p>Ak si myslíte, že ste našli manipuláciu, ktorú nemožno priradiť k žiadnej z uvedených techník, opíšte ju v poli s odôvodnením hodnotenia: uveďte citáciu z analyzovaného textu a stručne vysvetlite, prečo ide podľa vás o manipuláciu.</p>
+{{/BINARY}}
 
 {{#FULL}}
 <h2>KROK II – Podrobná analýza obsahu</h2>
@@ -37,7 +164,7 @@
 <ul>
 <li><b>Nepravdivosť/fabrikácia</b> — článok obsahuje explicitne nepravdivý obsah alebo obsahuje sfalšované dokumenty/údaje/citáty a podobne. Články zaradené do tejto skupiny vyžadujú komentár v štýle fakt-checkingu, kde je potrebné uviesť, ktorá informácia v texte je nepravdivá, a priložiť relevantný zdroj. Úlohou je identifikovať explicitne nepravdivý alebo sfalšovaný obsah a následne nájsť argumenty/zdroje vyvracajúce nepravdivé tvrdenie. Výberom tejto možnosti možno citovať nepravdivé tvrdenie v textovom poli. Druhé textové pole vyžaduje odkaz na článok poskytujúci dôkazy vyvracajúce citované tvrdenie (najmä vedecké zdroje a články zo spoľahlivých organizácií zaoberajúcich sa štúdiom dezinformácií).</li>
 </ul>
-<p><b>Poznámka:</b> Pri hľadaní overených dezinformačných tvrdení je najlepšie najprv prejsť na náš vyvinutý tool: Fact-check finder alebo Google Fact Check Tools. Ak nie je možné nájsť existujúci fact-checkingový článok, uveďte článok, ktorý obsahuje dôveryhodné údaje, ktoré možno použiť na vyvrátenie tých v dezinformačnom článku.</p>
+<p><b>Poznámka:</b> Pri hľadaní overených dezinformačných tvrdení je najlepšie najprv prejsť na náš vyvinutý tool: Fact-check finder alebo Google Fact Check Tools. Ak nie je možné nájsť existujúci fact-checkingový článok, uveďte článok, ktorý obsahuje dôveryhodné údaje, ktoré možno použiť na vyvrátenie tých v dezinformačnom článku. Pri citovaní nezávislých mimovládnych organizácií venujte osobitnú pozornosť tomu, či je organizácia členom International Fact-Checking Network (IFCN). Obe textové polia (citované nepravdivé tvrdenie aj odkaz na vyvracajúci zdroj) sú povinné.</p>
 <ul>
 <li><b>Manipulácia</b> — ohýbanie alebo skresľovanie faktov s cieľom dokázať svoju tézu alebo ovplyvniť názory a správanie niekoho iného. Manipulatívne články často nie sú explicitne nepravdivé, obsahujú však neúplné výroky použité v nevhodnom kontexte, selektívne vybrané informácie atď. Pokúste sa identifikovať všetky manipulatívne techniky v článku. Samozrejme, článok môže pokrývať len jednu techniku, ale aj viac. Príklady manipulatívnych techník možno nájsť v dokumente <i>Manipulačné techniky – príklady a definície</i>.</li>
 <li><b>Trolling/satira</b> — uverejňovanie kontroverzného, často nepravdivého obsahu, ktorý zobrazuje určité javy karikatúrnym, hravým spôsobom. Dezinformačné články vrátane trollingu/satiry sa môžu opierať o nepravdivosť aj manipuláciu. Po zvolení tejto možnosti by sa mala vykonať analýza primeraná typu dezinformácie: <i>nepravdivosť/fabrikácia</i>, <i>manipulácia</i> alebo oboje.</li>

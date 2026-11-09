@@ -33,17 +33,17 @@ This reproduces two demo projects — one per task mode — using the shipped
 example files. Run from this directory with the venv from step 1 activated.
 
 ```bash
-# snapshot mode: article rendered as embedded HTML
+# text mode (default): article body as plain text
 python build.py --language sk
-python setup_project.py --title "Annotation Template Demo"
-python import_tasks.py --file tasks.example.snapshot.jsonl --title "Annotation Template Demo"
-
-# text mode: article body as plain text (separate build AND separate project)
-python build.py --language sk --text
 python setup_project.py --title "Annotation Template Demo (text)"
 python import_tasks.py --file tasks.example.text.jsonl --title "Annotation Template Demo (text)"
 
-# rebuild the default (snapshot) config so build/ matches the first project
+# snapshot mode: article rendered as embedded HTML (separate build AND separate project)
+python build.py --language sk --snapshot
+python setup_project.py --title "Annotation Template Demo"
+python import_tasks.py --file tasks.example.snapshot.jsonl --title "Annotation Template Demo"
+
+# rebuild the default (text) config so build/ matches the text project
 python build.py --language sk
 ```
 
@@ -85,8 +85,8 @@ and the guidelines are mode-aware: sections of `guidelines.html` wrapped in
 `{{#FULL}}`…`{{/FULL}}` (the fine-grained Steps II–IV instructions) are
 stripped in `binary` mode so annotators never see instructions for
 questions their form does not contain.
-Flags: `--mode binary|full` (default `binary`), `--text` (text mode, no
-snapshot embed). See *Modes* below.
+Flags: `--mode binary|full` (default `binary`), `--snapshot` (snapshot mode,
+article embedded as HTML instead of plain text). See *Modes* below.
 
 ### 3. Create the Label Studio project
 
@@ -227,14 +227,16 @@ All choice labels live in `languages/<lang>/strings.yaml` under
 Two orthogonal dimensions, chosen at build time:
 
 - `--mode binary|full` — **binary** (default): selecting *Dezinformácia* in
-  question 1.2 ends the annotation (only author + content rating).
+  question 1.2 asks only for a required free-text justification (`dez_dovod`:
+  which claim is false/misleading and why), used for consensus between
+  annotators; no further steps.
   **full**: the disinformation path continues to step 2 (type of
   disinformation), step 3 (motivation, intention, emotions, topic) and step 4
   (narratives of the chosen topic).
-- `--text` — build for text-mode tasks (`$text` body, `<Text name="text">`).
-  Default (no flag) is snapshot mode: the article is embedded via
-  `<HyperText name="web" value="$snapshot_url" valueType="url">`. `{{target}}`
-  in the template resolves to `text` or `web` accordingly.
+- `--snapshot` — build for snapshot-mode tasks: the article is embedded via
+  `<HyperText name="web" value="$snapshot_url" valueType="url">`.
+  Default (no flag) is text mode (`$text` body, `<Text name="text">`).
+  `{{target}}` in the template resolves to `text` or `web` accordingly.
 
 The mode must match the tasks: a snapshot-mode config cannot display `text`
 tasks and vice versa. `value_mapping.json` always contains the superset of
@@ -244,7 +246,7 @@ all `choice_*` keys, independent of mode.
 
 | Script | Flags |
 |---|---|
-| `build.py` | `--language <code>` (required), `--mode binary\|full` (default `binary`), `--text` |
+| `build.py` | `--language <code>` (required), `--mode binary\|full` (default `binary`), `--snapshot` |
 | `setup_project.py` | `--title` (required), `--email` (optional, defaults to first user) |
 | `import_tasks.py` | `--file <tasks.jsonl>` (required), `--title` (required), `--force` (append even if the project has tasks) |
 | `cors_server.py` | `--root DIR` (default `snapshots/`), `--port PORT` (default `8765`) |

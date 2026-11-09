@@ -6,13 +6,13 @@
 # {{target}} is a build-injected variable (web/text), not a key in this file.
 
 # --- Panel headers / step titles ---
-title_clanok: "📰 Article under evaluation"
 title_celkove_hodnotenie: "Overall assessment"
 title_krok_2: "Step 2 of 4 · Detailed analysis of the content"
 title_krok_3: "Step 3 of 4 · Motivation and intentions"
 title_krok_4: "Step 4 of 4 · Narratives"
 title_fakt_checking: "🔎 Fact-checking"
 title_manipulativne_techniky: "🎭 Manipulation techniques used"
+title_dez_dovod: "🔎 Justification of the disinformation label"
 
 # --- Intro ---
 intro_text: "Procedure: 1) Read the whole article on the left. 2) Fill in the questions from top to bottom. Further steps appear automatically depending on your answers. Hovering over an option shows its explanation. Detailed instructions are available under Instructions."
@@ -36,6 +36,9 @@ q_3_2_required: "Select at least one intention."
 q_3_3_required: "Select at least one emotion."
 q_3_4_required: "Select a topic."
 q_narativy_required: "Select at least one narrative of the chosen topic."
+q_dez_dovod_required: "Explain why the article is disinformation (falseness, manipulation or another reason)."
+q_neprave_tvrdenie_required: "Quote the false statement from the article."
+q_vyvracajuci_zdroj_required: "Provide a link to a source that refutes the statement."
 
 # --- Help texts ---
 help_autor: "The author's rating does not affect the assessment of the content of the article."
@@ -44,11 +47,21 @@ help_fakt_checking: "Quote the false statement and provide a source that refutes
 help_manipulacne_techniky: "Mark all techniques the article uses (see the document \"Manipulation techniques - examples and definitions\")."
 help_emocie: "Put yourself in the shoes of a person who believes the disinformation. What would they feel while reading? You can select multiple options."
 help_narativy: "How does the author reproduce the disinformation? Narratives appear after selecting a topic in 3.4. You can select multiple options."
+help_dez_dovod: "One reason why the article is disinformation is enough; if several things are worth highlighting, list them all. Possible reasons: a false claim and a source that refutes it; manipulation (which technique and where – cherry picking, quote mining, exaggeration, false reference, etc.); a conspiracy theory or misleading satire; misleading context, unsupported or unverifiable sources; how the article plays on the reader's emotions and the possible public harm. Quote the specific passages. This field is used to reach consensus between annotators."
 
 # --- Notes ---
-note_obsah: "⚠ Requires reading the whole article. Selecting any option ends the assessment."
+note_obsah_full: "⚠ Requires reading the whole article. \"Disinformation\" continues with further steps; the other options end the assessment."
+note_obsah_binary: "⚠ Requires reading the whole article. \"Disinformation\" requires a justification; the other options end the assessment."
 note_typ: "⚠ \"Conspiracy theory\" is not combined with \"Falseness/fabrication\" or \"Manipulation\"."
 note_mot: "⚠ \"Chosen one/Savior complex\" cannot be the only motivation — select a main motivation as well."
+def_title: "ℹ What do we consider disinformation?"
+def_intro: "Disinformation is not only explicitly false claims. It is any false, inaccurate or misleading content that is created, presented and spread to deceive or for profit, and may cause public harm."
+def_1: "• Falseness/fabrication – explicitly false claims, fabricated documents, data or quotes."
+def_2: "• Manipulation – distorting facts even without an outright lie: cherry picking, quote mining, exaggeration, false cause, false references, appeal to emotion, etc."
+def_3: "• Conspiracy theories – an alternative explanation of an event involving a group hiding the truth."
+def_4: "• Trolling/satire – caricatured, often untrue content that can mislead."
+def_5: "• Intent and impact – the author's intent is usually only presumed; also consider the emotions, narratives and harm the article may cause."
+def_6: "• It must be verifiable: if neither falseness nor manipulation can be proven (unproven theory, opinion), select \"Hard to say\"."
 note_tema: "⚠ Select the same topic as the one assigned to the article in your list. The narratives in step 4 are shown based on it."
 
 # --- Placeholders ---
@@ -56,6 +69,7 @@ ph_autor_meno_neznamy: "Author's name (if stated in the article)"
 ph_autor_meno_znamy: "Author's name"
 ph_neprave_tvrdenie: "False statement from the article…"
 ph_vyvracajuci_zdroj: "Link (URL) to a source that refutes the statement…"
+ph_dez_dovod: "E.g.: The article claims that \"vaccines contain microchips\" (refuted by [source]); it also takes a doctor's quote out of context (quote mining) and plays on fear."
 
 # --- Completion banners ---
 done_kompletne: "✅ The assessment is complete. Check your answers and click \"Submit\"."

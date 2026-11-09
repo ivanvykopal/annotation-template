@@ -2,7 +2,7 @@
 """Render a Label Studio labeling config from a language pack.
 
 Usage:
-    python build.py --language sk [--mode binary|full] [--text]
+    python build.py --language sk [--mode binary|full] [--snapshot]
 
 Consumes  config.template.xml, languages/<lang>/strings.yaml,
           languages/<lang>/guidelines.html
@@ -97,12 +97,14 @@ def render_guidelines(guidelines: str, mode: str) -> str:
     Sections wrapped in {{#FULL}}...{{/FULL}} describe the fine-grained
     (Steps II-IV) annotation and are removed in binary mode so annotators
     never see instructions for questions that do not appear in their form.
+    Sections wrapped in {{#BINARY}}...{{/BINARY}} are the reverse: kept only
+    in binary mode.
     """
     if mode not in ("binary", "full"):
         raise BuildError(f"unknown mode: {mode!r}")
-    if mode != "full":
-        guidelines = _strip_block(guidelines, "FULL")
-    guidelines = _strip_marker_line(guidelines, "FULL")
+    guidelines = _strip_block(guidelines, "FULL" if mode != "full" else "BINARY")
+    for marker in ("FULL", "BINARY"):
+        guidelines = _strip_marker_line(guidelines, marker)
     return guidelines
 
 
@@ -124,7 +126,7 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--language", required=True, help="language code, e.g. sk")
     parser.add_argument("--mode", choices=["binary", "full"], default="binary")
-    parser.add_argument("--text", action="store_true", help="render for text (no web snapshot) mode")
+    parser.add_argument("--snapshot", action="store_true", help="render for web-snapshot mode (default: text mode)")
     args = parser.parse_args(argv)
 
     lang_dir = ROOT / "languages" / args.language
@@ -137,7 +139,7 @@ def main(argv: list[str] | None = None) -> int:
         return 1
 
     try:
-        rendered = render(template, strings, args.mode, args.text)
+        rendered = render(template, strings, args.mode, not args.snapshot)
     except BuildError as e:
         print(f"error: {e}", file=sys.stderr)
         return 1
@@ -166,7 +168,7 @@ def main(argv: list[str] | None = None) -> int:
     mapping_path.write_text(
         json.dumps(combined, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
-    print(f"wrote {out_dir / 'labeling_config.xml'} ({args.language}, mode={args.mode}, text_mode={args.text})")
+    print(f"wrote {out_dir / 'labeling_config.xml'} ({args.language}, mode={args.mode}, text_mode={not args.snapshot})")
     return 0
 
 

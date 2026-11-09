@@ -83,7 +83,7 @@ def _bootstrap_django() -> None:
 def read_tasks(path: str) -> list[dict]:
     """Parse and validate a JSONL file; reject files mixing both modes.
 
-    The labeling config is built for one mode (build.py --text vs. default),
+    The labeling config is built for one mode (build.py --snapshot vs. default),
     so a file containing both snapshot-mode and text-mode tasks is rejected
     as a whole — importing it would create tasks that cannot display.
     """
